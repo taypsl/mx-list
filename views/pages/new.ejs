@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ../partials/head.ejs %>	
+</head>
+<body>
+
+	<header>
+		<% include ../partials/header.ejs %>
+	</header>
+
+	<main>
+		<div class="container">
+			
+			<div class="mxlist newlist">
+				<form class="form form-newlist">
+					<input class="form-newlist-title" placeholder="Title" type="text" name="title" id="title">
+					<input class="form-newlist-synopsis" placeholder="Synopsis" type="text" name="synopsis" id="synopsis">
+				</form>
+
+				<div id="addSong">add song form here</div>
+				<!-- might have to create another mxlist div below with #addSong id there if css gets weird -->
+			</div>
+
+		</div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer.ejs %>
+	</footer>
+
+</body>
+</html>
