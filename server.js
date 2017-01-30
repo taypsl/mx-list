@@ -1,10 +1,10 @@
 // load tools
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
 // configure to use ejs
 app.set('view engine', 'ejs');
-
+app.use(express.static('images'));
 //===============================
 //use res.render to load ejs file
 //===============================
