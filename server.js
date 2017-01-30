@@ -26,7 +26,7 @@ app.use(cookieParser());
 app.use(bodyParser())
 
 //===============================
-//passport stuff
+//passport stuff 
 //===============================
 app.use(session({ secret: 'illjustleavethishere' }))
 app.use(passport.initialize());
