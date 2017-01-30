@@ -1,15 +1,44 @@
 // load tools
 const express = require('express');
 const app = express();
+var mongoose = require('mongoose');
+var passport = require('passport');
+var flash    = require('connect-flash');
+var morgan       = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser   = require('body-parser');
+var session      = require('express-session');
 
-// configure to use ejs
-app.set('view engine', 'ejs');
-app.use(express.static('images'));
-//===============================
-//use res.render to load ejs file
-//===============================
+var configDB = require('./config/database.js');
 
-//index||home page
+//===============================
+//configuration
+//===============================
+app.set('view engine', 'ejs'); // use ejs
+app.use(express.static('images'));// use db
+
+mongoose.connect(configDB.url);
+// require('./config/passport')(passport)
+
+//setup express app
+app.use(morgan('dev'));
+app.use(cookieParser());
+app.use(bodyParser())
+
+//===============================
+//passport stuff
+//===============================
+app.use(session({ secret: 'illjustleavethishere' }))
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+//===============================
+//routes
+//===============================
+require('./app/routes.js')(app, passport)
+
+//index||home page with ejs
 app.get('/', function(req, res) {
 	res.render('pages/index');
 });
@@ -35,7 +64,7 @@ app.get('/user', function(req, res) {
 });
 
 //===============================
-//port
+//launch at port...
 //===============================
 app.listen(8080);
 console.log('Mixin at 8080');
