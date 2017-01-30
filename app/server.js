@@ -15,7 +15,7 @@ var configDB = require('./config/database.js');
 //configuration
 //===============================
 app.set('view engine', 'ejs'); // use ejs
-app.use(express.static('images'));// use db
+app.use(express.static('public'));// make this folder public, dont need relative path
 
 mongoose.connect(configDB.url);
 // require('./config/passport')(passport)
@@ -36,7 +36,7 @@ app.use(flash());
 //===============================
 //routes
 //===============================
-require('./app/routes.js')(app, passport)
+//require('./app/routes.js')(app, passport)
 
 //index||home page with ejs
 app.get('/', function(req, res) {
