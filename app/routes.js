@@ -9,17 +9,17 @@ module.exports = function(app, passport) {
 	//app.post('/login, passport stuff)
 
 	// ====================================
-	// signup page 
+	// signup page
 	// ====================================
 	app.get('/signup', function(req, res) {
-		res.render('pages/signup', { 
+		res.render('pages/signup', {
 			message: req.flash('signupMessage')
 		});
 	});
 
 	app.post('/signup', passport.authenticate('local-signup', {
 		successRedirect: '/profile', //might want to redirect to where clicked (e.g. create new)
-		failureRedirect: '/signup', 
+		failureRedirect: '/signup',
 		failureFlash: true
 	}));
 
@@ -27,8 +27,14 @@ module.exports = function(app, passport) {
 	// login page
 	// ====================================
 	app.get('/login', function(req, res) {
-		res.render('pages/login',  { message: req.flash('loginMessage') });
+		res.render('pages/login',  { message: req.flash('loginMessage') })
 	});
+	//	process the login form
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect : '/profile', // redirect to the secure profile section
+		failureRedirect : '/login', // redirect back to the signup page if there is an error
+		failureFlash : true // allow flash messages
+	}));
 
 	// ====================================
 	// new playlist
@@ -42,7 +48,7 @@ module.exports = function(app, passport) {
 	// ====================================
 	app.get('/profile', isLoggedIn, function(req, res) {
 		res.render('pages/profile', {
-			user: req.user 
+			user: req.user
 		});
 	});
 
@@ -53,13 +59,19 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
+
+
+
+
 };
+
+
 
 //function to check if user is logged in
 function isLoggedIn(req, res, next) {
 	//if user is logged in
-	if (req.isAuthenticated()) 
-		return next();
-	//if user is not logged in, redirect them 
+	if (req.isAuthenticated())
+	return next();
+	//if user is not logged in, redirect them
 	res.redirect('/');
 };
