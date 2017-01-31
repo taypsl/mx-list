@@ -15,6 +15,12 @@ module.exports = function(app, passport) {
 		res.render('pages/signup', { message: req.flash('signupMessage')});
 	});
 
+	app.post('/signup', passport.authenticate('local-signup') {
+		successRedirect: '/profile', //might want to redirect to where clicked (e.g. create new)
+		failureRedirect: '/signup', 
+		failureFlash: true
+	});
+
 	// ====================================
 	// login page
 	// ====================================
@@ -53,5 +59,5 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated()) 
 		return next();
 	//if user is not logged in, redirect them 
-	res.redirect('/')''
+	res.redirect('/');
 };
