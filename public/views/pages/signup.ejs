@@ -14,9 +14,7 @@
 			
 			<div class="col-sm-6 col-sm-offset-3">
 				<!-- show authentication messages -->
-				<% if(messages.length>0) %>
-					{ <div class="alert alert-danger"><%=message %></div>
-				<% } %>
+
 
 				<!-- signup form -->
 				<form action="/signup" method="post">
@@ -29,12 +27,12 @@
 					<div class="form-group">
 						<input placeholder="password" type="text" name="password" id="password">
 					</div>
-					<button type="submit" class="btn btn-warning btn-lg">Sign Up</button>
+					<button type="submit" class="btn btn-success btn-lg">Sign Up</button>
 				</form>	
 
 				<div class="wrapper">
 					<p>Already have an account?</p>
-					<a href="/login"><img class="login-button" src=".../images/btn_login.png"></a>
+					<a href="/login"><img class="login-button" src="/assets/images/btn_login.png"></a>
 				</div>	
 			</div>
 

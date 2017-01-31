@@ -12,14 +12,16 @@ module.exports = function(app, passport) {
 	// signup page 
 	// ====================================
 	app.get('/signup', function(req, res) {
-		res.render('pages/signup', { message: req.flash('signupMessage')});
+		res.render('pages/signup', { 
+			message: req.flash('signupMessage')
+		});
 	});
 
-	app.post('/signup', passport.authenticate('local-signup') {
+	app.post('/signup', passport.authenticate('local-signup', {
 		successRedirect: '/profile', //might want to redirect to where clicked (e.g. create new)
 		failureRedirect: '/signup', 
 		failureFlash: true
-	});
+	}));
 
 	// ====================================
 	// login page

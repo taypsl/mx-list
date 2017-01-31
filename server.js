@@ -1,24 +1,25 @@
 // load tools
 const express = require('express');
 const app = express();
-var mongoose = require('mongoose');
-var passport = require('passport');
-var flash = require('connect-flash');
-var morgan = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const flash = require('connect-flash');
+const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const session = require('express-session');
 
-var configDB = require('./config/database.js');
+const configDB = require('./app/config/database.js');
 
 //===============================
 //configuration
 //===============================
 mongoose.connect(configDB.url);
-require('./config/passport')(passport)
+require('./app/config/passport')(passport)
 
+app.set('views', __dirname + '/public/views')
 app.set('view engine', 'ejs'); // use ejs
-app.use(express.static('public'));// make this folder public, dont need relative path
+app.use(express.static(__dirname + '/public'));// make this folder public, dont need relative path
 
 
 //setup express app
@@ -34,7 +35,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-require('./routes.js')(app, passport)
+require('./app/routes.js')(app, passport)
 
 //===============================
 //launch at port...
