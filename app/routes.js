@@ -1,3 +1,5 @@
+const Playlist = require('./models/playlist');
+
 module.exports = function(app, passport) {
 	// ====================================
 	// index page with ejs
@@ -5,8 +7,6 @@ module.exports = function(app, passport) {
 	app.get('/', function(req, res) {
 		res.render('pages/index');
 	});
-
-	//app.post('/login, passport stuff)
 
 	// ====================================
 	// signup page
@@ -43,6 +43,39 @@ module.exports = function(app, passport) {
 		res.render('pages/new');
 	});
 
+	app.post('/new', function(req, res) {
+		const requiredFields = ['username', 'title', 'synopsis', 'songs', 'imgUrl', 'type'];
+		requiredFields.forEach(field => {
+			if (!(field in req.body)) {
+				res.status(400).json(
+					{error: `Missing "${field}" in request body`});
+			}
+		});
+
+		Playlist
+			.create({
+				username: req.body.username,
+				title: req.body.title, 
+				synopsis: req.body.synopsis,
+				songs: req.body.song, //??
+				imgUrl: req.body.imgUrl,
+				type: req.body.type
+			})
+			.then(playlist => res.status(201).json(playlist))
+			.catch(err => {
+				console.error(err);
+				res.status(500).json({error: 'Something went wrong'});
+			});
+	/*	Song
+			.create({
+				name: req.body.song.name,
+    			artist: req.body.song.artist,
+    			songUrl: req.body.song.songUrl,
+    			imgUrl: req.body.song.imgUrl
+			})
+	*/
+	});
+
 	// ====================================
 	// user protected view
 	// ====================================
@@ -59,13 +92,7 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
-
-
-
-
 };
-
-
 
 //function to check if user is logged in
 function isLoggedIn(req, res, next) {
