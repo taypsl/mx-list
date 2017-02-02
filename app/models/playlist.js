@@ -3,18 +3,18 @@ const mongoose = require('mongoose');
 
 const playlistSchema = mongoose.Schema({
   id: String,
-  user: String, //author
+  username: String, //author
   title: String,
   synopsis: String,
-  keywords:[],
+  keywords: { type: Array, default: [] },
   songs:[{
     name: String,
     artist: String,
     songUrl: String,
-    imgURL: String 
-}],
-  imgURL: String, 
-  type: String // 'song' or 'artist' list. 
+    imgURL: String
+  }],
+  imgURL: String,
+  type: String // 'song' or 'artist' list.
 });
 
 //create user model and expose it to app

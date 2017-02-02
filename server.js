@@ -14,7 +14,7 @@ const configDB = require('./app/config/database.js');
 //===============================
 //configuration
 //===============================
-mongoose.connect(configDB.url);
+
 require('./app/config/passport')(passport)
 
 app.set('views', __dirname + '/public/views')
@@ -28,7 +28,7 @@ app.use(cookieParser());
 app.use(bodyParser())
 
 //===============================
-//passport stuff 
+//passport stuff
 //===============================
 app.use(session({ secret: 'illjustleavethishere' }))
 app.use(passport.initialize());
@@ -43,7 +43,7 @@ require('./app/routes.js')(app, passport)
 let server;
 
 // this function connects to our database, then starts the server
-function runServer(databaseUrl=configDB, port=8080) {
+function runServer(databaseUrl=configDB.url, port=8081) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
       if (err) {
@@ -74,14 +74,17 @@ function closeServer() {
      });
   });
 }
+function tearDownDb() {
+	console.warn('deleting database');
+	return mongoose.connection.db.dropDatabase();
+};
 
 if (require.main === module) {
   runServer().catch(err => console.error(err));
 };
 
-module.exports = {runServer, app, closeServer};
+module.exports = {runServer, app, closeServer, tearDownDb};
 
-/*
+
 app.listen(8080);
 console.log('Mixin at 8080');
-*/

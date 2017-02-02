@@ -39,26 +39,26 @@ module.exports = function(app, passport) {
 	// ====================================
 	// new playlist
 	// ====================================
-	app.get('/new', function(req, res) {
+	app.get('/playlist/new', function(req, res) {
 		res.render('pages/new');
 	});
 
-	app.post('/new', function(req, res) {
-		const requiredFields = ['username', 'title', 'synopsis', 'songs', 'imgUrl', 'type'];
-		requiredFields.forEach(field => {
-			if (!(field in req.body)) {
-				res.status(400).json(
-					{error: `Missing "${field}" in request body`});
-			}
-		});
+	app.post('/playlist', function(req, res) {
+		const requiredFields = ['username', 'title', 'synopsis', 'songs', 'imgURL', 'type'];
+		// requiredFields.forEach(field => {
+		// 	if (!(field in req.body)) {
+		// 		res.status(400).json(
+		// 			{error: `Missing "${field}" in request body`});
+		// 		}
+		// 	});
 
-		Playlist
+			Playlist
 			.create({
 				username: req.body.username,
-				title: req.body.title, 
+				title: req.body.title,
 				synopsis: req.body.synopsis,
-				songs: req.body.song, //??
-				imgUrl: req.body.imgUrl,
+				songs: req.body.songs, //??
+				imgURL: req.body.imgURL,
 				type: req.body.type
 			})
 			.then(playlist => res.status(201).json(playlist))
@@ -66,14 +66,14 @@ module.exports = function(app, passport) {
 				console.error(err);
 				res.status(500).json({error: 'Something went wrong'});
 			});
-	/*	Song
+			/*	Song
 			.create({
-				name: req.body.song.name,
-    			artist: req.body.song.artist,
-    			songUrl: req.body.song.songUrl,
-    			imgUrl: req.body.song.imgUrl
-			})
-	*/
+			name: req.body.song.name,
+			artist: req.body.song.artist,
+			songUrl: req.body.song.songUrl,
+			imgUrl: req.body.song.imgUrl
+		})
+		*/
 	});
 
 	// ====================================
