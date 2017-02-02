@@ -13,15 +13,28 @@
 		<div class="container">
 			
 			<div class="mxlist newlist">
-				<form class="form form-newlist">
-					<input class="form-newlist-title" placeholder="Title" type="text" name="title" id="title">
-					<input class="form-newlist-synopsis" placeholder="Synopsis" type="text" name="synopsis" id="synopsis">
+				<form action="/playlist" method="POST">
+					<div class="playlist-info">
+						<input type="text" placeholder="playlist title" name="title">
+						<input type="text" placeholder="synopsis" name="synopsis">
+						<input type="text" placeholder="keywords" name="keywords">
+						<input type="radio" name="type" value="artist" checked> Artist
+						<input type="radio" name="type" value="song"> Song
+					</div>
+					<div class="song-info">
+					<hr>
+						<input type="text" placeholder="artist" name="artist">
+						<input type="text" placeholder="song title" name="title">
+						<input type="text" placeholder="link to image" name="link to image">
+						<input type="text" placeholder="link to song" name="link to song">			
+						<input type="text" placeholder="song description" name="song description">				
+					</div>
+					<hr>
+					<img src="assets/images/icn_add.png">Add song</div>
+					<button type="submit">Submit</button>
 				</form>
 
-				<div id="addSong">add song form here</div>
-				<!-- might have to create another mxlist div below with #addSong id there if css gets weird -->
 			</div>
-
 		</div>
 	</main>
 

@@ -93,7 +93,7 @@ describe('Playlist API resource', function() {
 			let res;
 			let count = 0;
 			return chai.request(app)
-			.get('/posts')
+			.get('/')
 			.then(function(_res) {
 				res = _res;
 				res.should.have.status(200);
@@ -108,7 +108,7 @@ describe('Playlist API resource', function() {
 		it('should return playlists with correct fields', function() {
 			let resPlaylists;
 			return chai.request(app)
-			.get('/posts')
+			.get('/')
 			.then(function(res) {
 				res.should.have.status(200);
 				res.should.be.json;

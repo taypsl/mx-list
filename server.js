@@ -14,8 +14,8 @@ const configDB = require('./app/config/database.js');
 //===============================
 //configuration
 //===============================
+mongoose.Promise = global.Promise;
 
-require('./app/config/passport')(passport)
 
 app.set('views', __dirname + '/public/views')
 app.set('view engine', 'ejs'); // use ejs
@@ -30,6 +30,8 @@ app.use(bodyParser())
 //===============================
 //passport stuff
 //===============================
+require('./app/config/passport')(passport)
+
 app.use(session({ secret: 'illjustleavethishere' }))
 app.use(passport.initialize());
 app.use(passport.session());
@@ -43,14 +45,14 @@ require('./app/routes.js')(app, passport)
 let server;
 
 // this function connects to our database, then starts the server
-function runServer(databaseUrl=configDB.url, port=8081) {
+function runServer(databaseUrl=configDB.url, port=8080) {
   return new Promise((resolve, reject) => {
     mongoose.connect(databaseUrl, err => {
       if (err) {
         return reject(err);
       }
       server = app.listen(port, () => {
-        console.log(`Your app is listening on port ${port}`);
+        console.log(`Mixin at ${port}`);
         resolve();
       })
       .on('error', err => {
@@ -85,6 +87,5 @@ if (require.main === module) {
 
 module.exports = {runServer, app, closeServer, tearDownDb};
 
-
-app.listen(8080);
-console.log('Mixin at 8080');
+//app.listen(8080);
+//console.log('Mixin at 8080');

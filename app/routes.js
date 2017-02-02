@@ -6,6 +6,16 @@ module.exports = function(app, passport) {
 	// ====================================
 	app.get('/', function(req, res) {
 		res.render('pages/index');
+
+		Playlist
+		.find()
+		.exec()
+		.then(playlists => {
+			res.json(playlists);
+		})
+		.catch(err => {
+			res.status(500).json({error: 'Something went wrong'})
+		});
 	});
 
 	// ====================================
