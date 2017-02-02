@@ -7,7 +7,8 @@ const should = chai.should();
 
 const {User} = require('../models/user');
 const {Playlist} = require('../models/playlist');
-const configTestDB = require('./app/config/database');
+const configTestDB = require('../app/config/test-database');
+const {app, runServer, closeServer} = require('../server');
 
 chai.use(chaiHttp);
 
@@ -25,7 +26,7 @@ function seedPlaylistData() {
 // create fake playlist data
 function generatePlaylistData() {
 	return {
-		id: faker.random.uuid(),
+		//id: faker.random.uuid(), is this generated automatically?
 		username: faker.internet.userName(),
 		title: faker.random.words(),
 		  synopsis: faker.random.sentence(),
