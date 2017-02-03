@@ -15,19 +15,19 @@
 			<div class="mxlist newlist">
 				<form action="/playlist" method="POST">
 					<div class="playlist-info">
-						<input type="text" placeholder="playlist title" name="title">
-						<input type="text" placeholder="synopsis" name="synopsis">
-						<input type="text" placeholder="keywords" name="keywords">
-						<input type="radio" name="type" value="artist" checked> Artist
-						<input type="radio" name="type" value="song"> Song
+						<input type="text" placeholder="playlist title" name="title" id="title">
+						<input type="text" placeholder="synopsis" name="synopsis" id="synopsis">
+						<input type="text" placeholder="keywords" name="keywords" id="keywords">
+						<input type="radio" name="type" class="type" value="artist" id="type-artist" checked> Artist
+						<input type="radio" name="type" class="type" value="song" id="type-song"> Song
 					</div>
 					<div class="song-info">
 					<hr>
-						<input type="text" placeholder="artist" name="artist">
-						<input type="text" placeholder="song title" name="title">
-						<input type="text" placeholder="link to image" name="link to image">
-						<input type="text" placeholder="link to song" name="link to song">			
-						<input type="text" placeholder="song description" name="song description">				
+						<input type="text" placeholder="artist" name="artist" id="artist">
+						<input type="text" placeholder="song name" name="name" id="song-name">
+						<input type="text" placeholder="link to image" name="link to image" id="song-image">
+						<input type="text" placeholder="link to song" name="link to song" id="song-url">			
+						<input type="text" placeholder="song description" name="song description" id="song-description">				
 					</div>
 					<hr>
 					<img src="assets/images/icn_add.png">Add song</div>

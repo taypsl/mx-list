@@ -11,20 +11,20 @@
 
 	<main>
 		<div class="container">
-			<div class="new-playlist" id="new-playlist"><a href="/playlist/new"><img src="assets/images/icn_add.png"> Create Playlist</a></div>
-			<article class="mxlist col-md-6 col-md-offset-3">
-				<!-- insert article from db into template here -->
-				<div class="article-banner">
-					<h1 class="title">[Playlist Title]</h1>
-					<div class="date">
-						<div class="date-month">[MON]</div>
-						<div class="date-day">[day]</div>
-					</div>
-					<p class="description">[descriptive text]</p>
-					<hr class="yellow">
-					<p class="author">username</p>
-				</div>
-			</article>
+		
+			<div class="col-sm-6 col-sm-offset-3">
+					<!-- show authentication messages -->
+					<%  if(message.length>0) { %>
+						<div class="alert alert-danger"><%= message %></div>
+						<% } %>
+
+				<div class="new-playlist" id="new-playlist"><a href="/playlist/new"><img src="assets/images/icn_add.png"> Create Playlist</a></div>
+				
+				<article class="mxlist col-md-6 col-md-offset-3">
+					<!-- insert article from db into template here -->
+				</article>
+			</div>
+			
 		</div>
 	<main>
 

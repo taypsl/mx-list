@@ -2,11 +2,15 @@ const Playlist = require('./models/playlist');
 
 module.exports = function(app, passport) {
 	// ====================================
-	// index page with ejs
+	// index page (call all playlists)
 	// ====================================
-	app.get('/', function(req, res) {
-		res.render('pages/index');
+	app.get('/', function(req, res) {		
+		res.render('pages/index', {
+			message: req.flash('signupMessage')
+		});
+	});
 
+	app.get('/playlists', function(req, res) {
 		Playlist
 		.find()
 		.exec()
@@ -16,8 +20,7 @@ module.exports = function(app, passport) {
 		.catch(err => {
 			res.status(500).json({error: 'Something went wrong'})
 		});
-	});
-
+	})
 	// ====================================
 	// signup page
 	// ====================================
@@ -41,19 +44,19 @@ module.exports = function(app, passport) {
 	});
 	//	process the login form
 	app.post('/login', passport.authenticate('local-login', {
-		successRedirect : '/profile', // redirect to the secure profile section
-		failureRedirect : '/login', // redirect back to the signup page if there is an error
-		failureFlash : true // allow flash messages
+		successRedirect: '/profile', // redirect to the secure profile section
+		failureRedirect: '/login', // redirect back to the signup page if there is an error
+		failureFlash: true // allow flash messages
 	}));
 
 	// ====================================
 	// new playlist
 	// ====================================
-	app.get('/playlist/new', function(req, res) {
+	app.get('/playlist/new', isLoggedIn, function(req, res) {
 		res.render('pages/new');
 	});
 
-	app.post('/playlist', function(req, res) {
+	app.post('/playlists', function(req, res) {
 		const requiredFields = ['username', 'title', 'synopsis', 'songs', 'imgURL', 'type'];
 		// requiredFields.forEach(field => {
 		// 	if (!(field in req.body)) {
@@ -85,6 +88,46 @@ module.exports = function(app, passport) {
 		})
 		*/
 	});
+	
+	// ====================================
+	// update playlist
+	// ====================================
+	app.put('/playlists/:id', (req, res) => {
+		if (!(req.params.id && req.body._id && req.params.id === req.body._id)) {
+			res.status(400).json({
+				error: 'Request path id and request body id values must match'
+			});
+		}
+		const updated = {};
+		const updateableFields = ['_id', 'username','keywords', 'title', 'synopsis', 'songs', 'imgURL', 'type'];
+		updateableFields.forEach(field => {
+			if (field in req.body) {
+				updated[field] = req.body[field];
+			}
+		});
+
+		Playlist
+			.findByIdAndUpdate(req.body._id, {$set: updated}, {new: true})
+			.exec()
+			.then(updatedPlaylist => res.status(201).json(updatedPlaylist))
+			.catch(err => res.status(500).json({message: 'Something went wrong'}));
+	});
+
+	// ====================================
+	// delete playlist
+	// ====================================
+	app.delete('/playlists/:id', (req, res) => {
+		Playlist
+			.findByIdAndRemove(req.body._id)
+			.exec()
+			.then(() => {
+				res.status(204).json({ message: 'successfully deleted' })
+			})
+			.catch(err => {
+				console.error(err);
+				res.status(500).json({ error: 'something went wrong' });
+			});
+	});
 
 	// ====================================
 	// user protected view
@@ -110,5 +153,5 @@ function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())
 	return next();
 	//if user is not logged in, redirect them
-	res.redirect('/');
+	res.render('pages/index', { message: req.flash('loginMessage') });
 };
