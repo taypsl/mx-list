@@ -11,8 +11,33 @@
 	<main>
 		<div class="container">
 			
-			<div class="mxlist newlist">Display Playlist Here
-			</div>
+			<section class="mxlist col-md-6 col-md-offset-3">
+				<div class="article-banner">
+					
+					<article class="playlist">
+						<h1 class="title"><% playlist.title %></h1>
+						<p class="synopsis" id="synopsis"> <% playlist.synopsis %></p>
+						<hr>
+						<h4 class="username"><% user._id %></h4>
+					</article>
+
+					<article class="song-list">
+						<h3 class="artist-name" id="artist"></h3>
+						<div class="song-image" id="song-imgURL"></div>
+						<p class="description" id="description"></p>
+						<div class="songUrl-container" id="songUrl-container">
+							<img id="play" src="../assests/images/icn_pause" class="play-icon">
+							<p class="song-name" id="song-name"></p>
+						</div>
+
+					</article>
+
+					<article class="playlist-footer">
+						<p class="keywords" id="keywords"></p>
+					</article>
+
+				</div>
+			</section>
 
 		</div>
 	</main>
