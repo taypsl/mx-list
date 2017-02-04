@@ -66,7 +66,7 @@ describe('Playlist API resource', function() {
 		it('should add a new playlist', function() {
 			const newPlaylist = generatePlaylistData();
 			return chai.request(app)
-			.post('/playlists')
+			.post('/api/playlists')
 			.send(newPlaylist)
 			.then(function(res) {
 				res.should.have.status(201);
@@ -92,7 +92,7 @@ describe('Playlist API resource', function() {
 			let res;
 			let count = 0;
 			return chai.request(app)
-			.get('/playlists')
+			.get('/api/playlists')
 			.then(function(_res) {
 				res = _res;
 				res.should.have.status(200);
@@ -110,7 +110,7 @@ describe('Playlist API resource', function() {
 		it('should return playlists with the correct fields', function() {
 			let testPlaylist;
 			return chai.request(app)
-			.get('/playlists')
+			.get('/api/playlists')
 			.then(function(res) {
 				//console.log(res.body)
 				res.should.have.status(200);
@@ -151,7 +151,7 @@ describe('Playlist API resource', function() {
 					console.log(updatedPlaylist._id);
 					updatedPlaylist._id = playlist._id;
 					return chai.request(app)
-					.put(`/playlists/${playlist._id}`)
+					.put(`/api/playlists/${playlist._id}`)
 					.send(updatedPlaylist);
 				})
 				.then(function(res) {
@@ -186,7 +186,7 @@ describe('Playlist API resource', function() {
 			 Playlist
 				.findOne({}, function(error, _playlist) {
 					playlist = _playlist;
-					return chai.request(app).delete(`/playlists/${playlist._id}`)
+					return chai.request(app).delete(`/api/playlists/${playlist._id}`)
 				})
 				.then(function(res) {
 					console.log(res)

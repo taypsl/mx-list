@@ -11,18 +11,6 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	app.get('/playlists', function(req, res) {
-		Playlist
-		.find()
-		.exec()
-		.then(playlists => {
-			res.json(playlists);
-		})
-		.catch(err => {
-			res.status(500).json({error: 'Something went wrong'})
-		});
-	//	res.render('index.ejs', {Playlist:res})
-	})
 	// ====================================
 	// signup page
 	// ====================================
@@ -52,72 +40,6 @@ module.exports = function(app, passport) {
 	}));
 
 	// ====================================
-	// create new playlist
-	// ====================================
-	app.get('/playlist/new', isLoggedIn, function(req, res) {
-		res.render('pages/new');
-	});
-
-	app.post('/playlists', function(req, res) {
-		const requiredFields = ['username', 'title', 'synopsis', 'songs', 'imgURL', 'type'];
-
-			Playlist
-			.create({
-				username: req.body.username,
-				title: req.body.title,
-				synopsis: req.body.synopsis,
-				songs: req.body.songs, //??
-				imgURL: req.body.imgURL,
-				type: req.body.type
-			})
-			.then(playlist => res.status(201).json(playlist))
-			.catch(err => {
-				console.error(err);
-				res.status(500).json({error: 'Something went wrong'});
-			});
-	});
-
-	// ====================================
-	// update playlist
-	// ====================================
-	app.put('/playlists/:id', (req, res) => {
-		if (!(req.params.id && req.body._id && req.params.id === req.body._id)) {
-			res.status(400).json({
-				error: 'Request path id and request body id values must match'
-			});
-		}
-		const updated = {};
-		const updateableFields = ['_id', 'username','keywords', 'title', 'synopsis', 'songs', 'imgURL', 'type'];
-		updateableFields.forEach(field => {
-			if (field in req.body) {
-				updated[field] = req.body[field];
-			}
-		});
-
-		Playlist
-			.findByIdAndUpdate(req.body._id, {$set: updated}, {new: true})
-			.exec()
-			.then(updatedPlaylist => res.status(201).json(updatedPlaylist))
-			.catch(err => res.status(500).json({message: 'Something went wrong'}));
-	});
-
-	// ====================================
-	// delete playlist
-	// ====================================
-	app.delete('/playlists/:id', (req, res) => {
-		Playlist
-			.findByIdAndRemove(req.params.id)
-			.exec()
-			.then(() => {
-				res.status(200).json({ message: 'successfully deleted' })
-			})
-			.catch(err => {
-				console.error(err);
-				res.status(500).json({ error: 'something went wrong' });
-			});
-	});
-
-	// ====================================
 	// user protected view
 	// ====================================
 	app.get('/profile', isLoggedIn, function(req, res) {
@@ -133,6 +55,14 @@ module.exports = function(app, passport) {
 		req.logout();
 		res.redirect('/');
 	});
+
+	// ====================================
+  // create new playlist
+  // ====================================
+  app.get('/api/playlist/new', isLoggedIn, function(req, res) {
+    res.render('pages/new');
+  });
+
 };
 
 
