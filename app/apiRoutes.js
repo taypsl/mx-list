@@ -1,6 +1,13 @@
 const Playlist = require('./models/playlist');
 
 module.exports = function(app, passport) {
+
+
+  app.get('/hello', function(req, res) {
+    res.json({message:"hello"})
+  });
+
+
 	// ====================================
 	// Read playlists on index page
 	// ====================================
