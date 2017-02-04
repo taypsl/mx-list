@@ -4,11 +4,28 @@ module.exports = function(app, passport) {
 	// ====================================
 	// Read playlists on index page
 	// ====================================
+
+	//this one should display all the posts to the public
+	// public route.
 	app.get('/', function(req, res) {
-		res.render('pages/index', {
-			message: req.flash('signupMessage'),
-		   title: 'Please work'
+
+		Playlist
+		.find()
+		.exec()
+		.then(playlists => {
+			res.render('pages/index', {
+				playlists: playlists,
+				message: 'HELOOOO',
+				title: 'Please work'
+			});
+		})
+		.catch(err => {
+			res.render('pages/index', {
+				message: 'Something went wrong',
+				title: 'Please work'
+			});
 		});
+
 	});
 
 	// ====================================
@@ -57,11 +74,11 @@ module.exports = function(app, passport) {
 	});
 
 	// ====================================
-  // create new playlist
-  // ====================================
-  app.get('/api/playlist/new', isLoggedIn, function(req, res) {
-    res.render('pages/new');
-  });
+	// create new playlist
+	// ====================================
+	app.get('/api/playlist/new', isLoggedIn, function(req, res) {
+		res.render('pages/new');
+	});
 
 };
 
