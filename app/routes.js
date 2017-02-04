@@ -8,12 +8,12 @@ module.exports = function(app, passport) {
 	//this one should display all the posts to the public
 	// public route.
 	app.get('/', function(req, res) {
-
 		Playlist
 		.find()
 		.exec()
 		.then(playlists => {
 			res.render('pages/index', {
+				isAuthenticated: req.isAuthenticated(),
 				playlists: playlists,
 				message: 'HELOOOO',
 				title: 'Please work'
@@ -59,7 +59,7 @@ module.exports = function(app, passport) {
 	// ====================================
 	// user protected view
 	// ====================================
-	app.get('/profile', isLoggedIn, function(req, res) {
+	app.get('/profile', sendToHomeIfNotAuthenticated, function(req, res) {
 		res.render('pages/profile', {
 			user: req.user
 		});
@@ -76,16 +76,22 @@ module.exports = function(app, passport) {
 	// ====================================
 	// create new playlist
 	// ====================================
-	app.get('/api/playlist/new', isLoggedIn, function(req, res) {
+	app.get('/playlist/new', /*sendToHomeIfNotAuthenticated,*/ function(req, res) {
 		res.render('pages/new');
 	});
+
+	app.get('/playlist/:playlistID', /*sendToHomeIfNotAuthenticated,*/ function(req, res) {
+		res.render('pages/playlist');
+	});
+
+
 
 };
 
 
 
 //function to check if user is logged in
-function isLoggedIn(req, res, next) {
+function sendToHomeIfNotAuthenticated(req, res, next) {
 	//if user is logged in
 	if (req.isAuthenticated())
 	return next();

@@ -18,8 +18,9 @@ module.exports = function(app, passport) {
 
 
   app.post('/api/playlists', function(req, res) {
-    const requiredFields = ['username', 'title', 'synopsis', 'songs', 'imgURL', 'type'];
 
+  //  const requiredFields = ['username', 'title', 'synopsis', 'songs', 'imgURL', 'type'];
+  console.log(req.body);
     Playlist
     .create({
       username: req.body.username,
@@ -63,7 +64,7 @@ module.exports = function(app, passport) {
   // ====================================
   // delete playlist
   // ====================================
-  app.delete('/api/playlists/:id', (req, res) => {
+  app.delete('/api/playlists/:id',  (req, res) => {
     Playlist
     .findByIdAndRemove(req.params.id)
     .exec()
@@ -79,10 +80,10 @@ module.exports = function(app, passport) {
 
 
 //function to check if user is logged in
-function isLoggedIn(req, res, next) {
+function sendToHomeIfNotAuthenticated(req, res, next) {
 	//if user is logged in
 	if (req.isAuthenticated())
 	return next();
 	//if user is not logged in, redirect them
-	res.render('pages/index', { message: req.flash('loginMessage') });
+	es.status(500).json({ error: 'not auth' });
 };
