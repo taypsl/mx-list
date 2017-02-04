@@ -5,14 +5,14 @@ $(document).ready(function() {
 
 $('#submit').on('click', function(){
 	const playlist = {
-		title: $('#title').val();
-		synopsis: $('#synopsis').val();
-		keywords: $('#keywords').val();
+		title: $('#title').val(),
+		synopsis: $('#synopsis').val(),
+		keywords: $('#keywords').val(),
 		type: $('.type').val();
 	const songs = {
-		
+
 	}
-} 
+}
 
 ( URL, data, callback);
 

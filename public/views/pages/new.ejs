@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% include ../partials/head.ejs %>	
+	<% include ../partials/head.ejs %>
 </head>
 <body>
 
@@ -11,9 +11,10 @@
 
 	<main>
 		<div class="container">
-			
+
 			<div class="mxlist newlist">
-				<form action="/playlist" method="POST">
+				<!-- TODO instead if doing this, use JQUERY AJAX)-->
+				<form action="/api/playlists" method="POST">
 					<div class="playlist-info">
 						<input type="text" placeholder="playlist title" name="title" id="title">
 						<input type="text" placeholder="synopsis" name="synopsis" id="synopsis">
@@ -26,8 +27,8 @@
 						<input type="text" placeholder="artist" name="artist" id="artist">
 						<input type="text" placeholder="song name" name="name" id="song-name">
 						<input type="text" placeholder="link to image" name="link to image" id="song-image">
-						<input type="text" placeholder="link to song" name="link to song" id="song-url">			
-						<input type="text" placeholder="song description" name="song description" id="song-description">				
+						<input type="text" placeholder="link to song" name="link to song" id="song-url">
+						<input type="text" placeholder="song description" name="song description" id="song-description">
 					</div>
 					<hr>
 					<img src="assets/images/icn_add.png">Add song</div>
