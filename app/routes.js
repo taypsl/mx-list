@@ -2,11 +2,12 @@ const Playlist = require('./models/playlist');
 
 module.exports = function(app, passport) {
 	// ====================================
-	// index page (call all playlists)
+	// Read playlists on index page
 	// ====================================
 	app.get('/', function(req, res) {		
 		res.render('pages/index', {
-			message: req.flash('signupMessage')
+			message: req.flash('signupMessage'),
+		   title: 'Please work'
 		});
 	});
 
@@ -20,6 +21,7 @@ module.exports = function(app, passport) {
 		.catch(err => {
 			res.status(500).json({error: 'Something went wrong'})
 		});
+		res.render('index.ejs', {Playlist:res})
 	})
 	// ====================================
 	// signup page
@@ -50,7 +52,7 @@ module.exports = function(app, passport) {
 	}));
 
 	// ====================================
-	// new playlist
+	// create new playlist
 	// ====================================
 	app.get('/playlist/new', isLoggedIn, function(req, res) {
 		res.render('pages/new');
@@ -58,12 +60,6 @@ module.exports = function(app, passport) {
 
 	app.post('/playlists', function(req, res) {
 		const requiredFields = ['username', 'title', 'synopsis', 'songs', 'imgURL', 'type'];
-		// requiredFields.forEach(field => {
-		// 	if (!(field in req.body)) {
-		// 		res.status(400).json(
-		// 			{error: `Missing "${field}" in request body`});
-		// 		}
-		// 	});
 
 			Playlist
 			.create({
@@ -79,14 +75,6 @@ module.exports = function(app, passport) {
 				console.error(err);
 				res.status(500).json({error: 'Something went wrong'});
 			});
-			/*	Song
-			.create({
-			name: req.body.song.name,
-			artist: req.body.song.artist,
-			songUrl: req.body.song.songUrl,
-			imgUrl: req.body.song.imgUrl
-		})
-		*/
 	});
 	
 	// ====================================
@@ -147,6 +135,8 @@ module.exports = function(app, passport) {
 	});
 };
 
+
+
 //function to check if user is logged in
 function isLoggedIn(req, res, next) {
 	//if user is logged in
@@ -155,3 +145,6 @@ function isLoggedIn(req, res, next) {
 	//if user is not logged in, redirect them
 	res.render('pages/index', { message: req.flash('loginMessage') });
 };
+
+
+
