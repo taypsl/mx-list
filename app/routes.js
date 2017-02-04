@@ -4,7 +4,7 @@ module.exports = function(app, passport) {
 	// ====================================
 	// Read playlists on index page
 	// ====================================
-	app.get('/', function(req, res) {		
+	app.get('/', function(req, res) {
 		res.render('pages/index', {
 			message: req.flash('signupMessage'),
 		   title: 'Please work'
@@ -21,7 +21,7 @@ module.exports = function(app, passport) {
 		.catch(err => {
 			res.status(500).json({error: 'Something went wrong'})
 		});
-		res.render('index.ejs', {Playlist:res})
+	//	res.render('index.ejs', {Playlist:res})
 	})
 	// ====================================
 	// signup page
@@ -76,7 +76,7 @@ module.exports = function(app, passport) {
 				res.status(500).json({error: 'Something went wrong'});
 			});
 	});
-	
+
 	// ====================================
 	// update playlist
 	// ====================================
@@ -105,11 +105,12 @@ module.exports = function(app, passport) {
 	// delete playlist
 	// ====================================
 	app.delete('/playlists/:id', (req, res) => {
+		console.log("ASDSA")
 		Playlist
-			.findByIdAndRemove(req.body._id)
+			.findByIdAndRemove(req.params.id)
 			.exec()
 			.then(() => {
-				res.status(204).json({ message: 'successfully deleted' })
+				res.status(200).json({ message: 'successfully deleted' })
 			})
 			.catch(err => {
 				console.error(err);
@@ -145,6 +146,3 @@ function isLoggedIn(req, res, next) {
 	//if user is not logged in, redirect them
 	res.render('pages/index', { message: req.flash('loginMessage') });
 };
-
-
-
