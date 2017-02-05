@@ -25,12 +25,22 @@
 				<a href="/playlist/new">
 				<img src="assets/images/icn_add.png"> Create Playlist</a></div>
 			
+				<div class="article-banner">
+					<div class="playlist">
+					  <% for(var i=0; i<playlists.length; i++) {%>
+					    <div class="playlist">
+					      <h1><%= playlists[i].title %></h1>
+					      <p><%= playlists[i].synopsis %></p>
+					    </div>
+					  <% } %>
+					</div>
+				</div>
 
+				<!--
 				<article class="mxlist col-md-6 col-md-offset-3">
 					<p><% title %></p>
 					<p><%= playlists %></p>
-					<p>Soooo, this one should display all the posts to the public</p>
-				</article>
+				</article> -->
 			</div>
 
 		</div>
