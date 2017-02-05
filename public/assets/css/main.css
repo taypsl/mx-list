@@ -1,6 +1,6 @@
 /* header */
 .navbar-custom {
-	background-color: #ffffff;
+	background-color: #fff;
 }
 
 body {
@@ -8,15 +8,32 @@ body {
 }
 /* article display on index.ejs */
 .article-container {
-	background-color: #ffffff;
+	background-color: #fff;
 	margin-top: 30px;
 	border: .5px solid #bababa;
-	padding: 0 10px 0 30px;
+	padding: 0 0 0 30px;
+}
+
+.title-container {
+ 	padding-right: 20px;
+	background-color: #000;
+	margin: 20px 0 10px 0;
+	border-radius: 8px 0 0 8px;
+}
+
+.article-title {
+	color: #fff;
+	margin: 0 0 0 10px;
+	padding-bottom: 10px;
 }
 
 .yellow-line {
-	height: 3px;
+	height: 4px;
 	color: #f9e00c;
 	background-color: #f9e00c;
+}
+
+.article-synopsis {
+	margin-left: 10px;
 }
 /* footer */

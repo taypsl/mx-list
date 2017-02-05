@@ -25,7 +25,9 @@
 				<section>
 					<% for(var i=0; i<playlists.length; i++) {%>
 						<article class="article-container">
-							<h1 class="article-title"><%= playlists[i].title %></h1>
+							<div class="title-container">>
+								<h1 class="article-title"><%= playlists[i].title %></h1>
+							</div>
 							<p class="article-synopsis"><%= playlists[i].synopsis %></p>
 							<hr class="yellow-line">
 						</article>
