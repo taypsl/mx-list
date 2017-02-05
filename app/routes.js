@@ -14,9 +14,9 @@ module.exports = function(app, passport) {
 		.then(playlists => {
 			res.render('pages/index', {
 				isAuthenticated: req.isAuthenticated(),
-				playlists: playlists,
-				message: 'HELOOOO',
-				title: 'Please work'
+				playlists: playlists
+				//message: '',
+				//title: 'Please work'
 			});
 		})
 		.catch(err => {

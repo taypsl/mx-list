@@ -1,6 +1,22 @@
 /* header */
+.navbar-custom {
+	background-color: #ffffff;
+}
 
+body {
+	background-color: #f4f4f4;
+}
 /* article display on index.ejs */
+.article-container {
+	background-color: #ffffff;
+	margin-top: 30px;
+	border: .5px solid #bababa;
+	padding: 0 10px 0 30px;
+}
 
-
+.yellow-line {
+	height: 3px;
+	color: #f9e00c;
+	background-color: #f9e00c;
+}
 /* footer */

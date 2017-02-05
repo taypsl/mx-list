@@ -13,10 +13,7 @@
 		<div class="container">
 
 			<div class="col-sm-6 col-sm-offset-3">
-					<!-- show authentication messages -->
-					<%  if(message.length>0) { %>
-						<div class="alert alert-danger"><%= message %></div>
-						<% } %>
+				
 
 
 				<h1>isAuthenticated</h1>
@@ -25,22 +22,16 @@
 				<a href="/playlist/new">
 				<img src="assets/images/icn_add.png"> Create Playlist</a></div>
 			
-				<div class="article-banner">
-					<div class="playlist">
-					  <% for(var i=0; i<playlists.length; i++) {%>
-					    <div class="playlist">
-					      <h1><%= playlists[i].title %></h1>
-					      <p><%= playlists[i].synopsis %></p>
-					    </div>
-					  <% } %>
-					</div>
-				</div>
+				<section>
+					<% for(var i=0; i<playlists.length; i++) {%>
+						<article class="article-container">
+							<h1 class="article-title"><%= playlists[i].title %></h1>
+							<p class="article-synopsis"><%= playlists[i].synopsis %></p>
+							<hr class="yellow-line">
+						</article>
+					<% } %>
+				</section>
 
-				<!--
-				<article class="mxlist col-md-6 col-md-offset-3">
-					<p><% title %></p>
-					<p><%= playlists %></p>
-				</article> -->
 			</div>
 
 		</div>
