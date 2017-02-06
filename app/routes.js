@@ -74,14 +74,28 @@ module.exports = function(app, passport) {
 	});
 
 	// ====================================
-	// create new playlist
+	// view selected playlist
 	// ====================================
-	app.get('/playlist/new', /*sendToHomeIfNotAuthenticated,*/ function(req, res) {
+	app.get('/playlists/new', /*sendToHomeIfNotAuthenticated,*/ function(req, res) {
 		res.render('pages/new');
 	});
 
-	app.get('/playlist/:playlistID', /*sendToHomeIfNotAuthenticated,*/ function(req, res) {
-		res.render('pages/playlist');
+	app.get('/playlists/:id', function(req, res) {
+		Playlist
+	   .findById(req.params.id)
+	   .exec()
+	   .then(() => {
+	     res.render('pages/playlist', {
+				isAuthenticated: req.isAuthenticated(),
+				playlist: playlists._id
+			});
+	   })
+	   .catch(err => {
+	     console.error(err);
+	     res.status(500).json({ error: 'something went wrong' });
+	   })
+
+
 	});
 
 
