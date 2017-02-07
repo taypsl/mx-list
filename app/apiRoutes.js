@@ -13,7 +13,7 @@ module.exports = function(app, passport) {
     .catch(err => {
       res.status(500).json({error: 'Something went wrong'})
     });
-    //	res.render('index.ejs', {Playlist:res})
+    //  res.render('index.ejs', {Playlist:res})
   })
 
 
@@ -81,9 +81,9 @@ module.exports = function(app, passport) {
 
 //function to check if user is logged in
 function sendToHomeIfNotAuthenticated(req, res, next) {
-	//if user is logged in
-	if (req.isAuthenticated())
-	return next();
-	//if user is not logged in, redirect them
-	es.status(500).json({ error: 'not auth' });
+  //if user is logged in
+  if (req.isAuthenticated())
+  return next();
+  //if user is not logged in, redirect them
+  res.status(500).json({ error: 'not auth' });
 };

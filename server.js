@@ -78,8 +78,8 @@ function closeServer() {
   });
 }
 function tearDownDb() {
-	console.warn('deleting database');
-	return mongoose.connection.db.dropDatabase();
+  console.warn('deleting database');
+  return mongoose.connection.db.dropDatabase();
 };
 
 if (require.main === module) {
@@ -88,5 +88,7 @@ if (require.main === module) {
 
 module.exports = {runServer, app, closeServer, tearDownDb};
 
-//app.listen(8080);
-//console.log('Mixin at 8080');
+/*// listen for requests :)
+var listener = app.listen(process.env.PORT, function () {
+  console.log('Your app is listening on port ' + listener.address().port);
+});*/

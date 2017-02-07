@@ -15,13 +15,14 @@
 				<div class="article-banner">
 					
 					<article class="playlist">
-						<h1 class="title"><% playlist %></h1>
-						<p class="synopsis" id="synopsis"> <% playlist.synopsis %></p>
+						<h1 class="title"><%= playlist.title %></h1>
+						<p class="synopsis" id="synopsis"> <%= playlist.synopsis %></p>
 						<hr>
 					</article>
 
+          
 					<article class="song-list">
-						<h3 class="artist-name" id="artist">playlist.songs</h3>
+						<h3 class="artist-name" id="artist"><%=playlist.songs%></h3>
 						<div class="song-image" id="song-imgURL"></div>
 						<p class="description" id="description"></p>
 						<div class="songUrl-container" id="songUrl-container">

@@ -84,18 +84,15 @@ module.exports = function(app, passport) {
 		Playlist
 	   .findById(req.params.id)
 	   .exec()
-	   .then(() => {
-	     res.render('pages/playlist', {
-				isAuthenticated: req.isAuthenticated(),
-				playlist: playlists._id
+	   .then(playlist => {
+			res.render('pages/playlist', {
+				playlist: playlist,
 			});
 	   })
 	   .catch(err => {
 	     console.error(err);
 	     res.status(500).json({ error: 'something went wrong' });
 	   })
-
-
 	});
 
 
