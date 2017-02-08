@@ -11,29 +11,31 @@
 	<main>
 		<div class="container">
 			
-			<section class="mxlist col-md-6 col-md-offset-3">
+			<section class="col-sm-6 col-sm-offset-3">
 				<div class="article-banner">
 					
 					<article class="playlist">
+						<img class="playlist-img" id="imgURL" src="<%= playlist.imgURL %>" />
 						<h1 class="title"><%= playlist.title %></h1>
 						<p class="synopsis" id="synopsis"> <%= playlist.synopsis %></p>
 						<hr>
 					</article>
 
-          
-					<article class="song-list">
-						<h3 class="artist-name" id="artist"><%=playlist.songs%></h3>
-						<div class="song-image" id="song-imgURL"></div>
-						<p class="description" id="description"></p>
-						<div class="songUrl-container" id="songUrl-container">
-							<img id="play" src="../assests/images/icn_pause.png" class="play-icon">
-							<p class="song-name" id="song-name"></p>
+					<article class="song-container">
+						<h1 class="artist-name"><%= playlist.songs %></h1>
+						<img class="song-imgURL" src="https://i.ytimg.com/vi/zBn5aIfZElE/maxresdefault.jpg" />
+						<!--<audio class="songURL" src="http://upload.wikimedia.org/wikipedia/commons/6/6f/Cello_Live_Performance_John_Michel_Tchaikovsky_Violin_Concerto_3rd_MVT_applaused_cut.ogg" id="<%= 0 %>" />-->
+						<div class="player">
+							<a href="javascript:void(0);" onclick="play();"><img class="player-icon play" src="assets/images/icn_play.png" /></a>
+							<a href="javascript:void(0);" onclick="play();"><img class="player-icon pause" src="assets/images/icn_pause.png"></a>
+							<iframe width="560" height="315" id="<%= 0 %>" src="https://www.youtube.com/embed/wEBlaMOmKV4?rel=0&&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
 						</div>
 
 					</article>
 
+
 					<article class="playlist-footer">
-						<p class="keywords" id="keywords"></p>
+						<p class="keywords" id="keywords"><%= playlist.keywords %></p>
 					</article>
 
 				</div>

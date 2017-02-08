@@ -36,6 +36,21 @@ body {
 .article-synopsis {
 	margin-left: 10px;
 }
+
+/* playlist/:id */
+.song-imgURL {
+	width: 400px;
+}
+
+/* audio player */
+iframe {
+	display: none;
+}
+
+.player-icon {
+	width: 40px;
+}
+
 /* footer */
 
 /* no display */

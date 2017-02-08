@@ -21,6 +21,7 @@ app.set('views', __dirname + '/public/views')
 app.set('view engine', 'ejs'); // use ejs
 app.use(express.static(__dirname + '/public/')); // make this folder public, dont need relative path
 app.use('/playlists', express.static(__dirname + '/public/')) // serve public folder for /playlist requests
+app.use('/playlists/:id', express.static(__dirname + '/public/')) // serve public folder for /playlist requests
 
 //setup express app
 app.use(morgan('dev'));
