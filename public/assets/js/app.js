@@ -6,35 +6,47 @@ $(document).ready(function() {
 // ===============================================
 // This function creates an <iframe> (and YouTube player)
 //    after the API code downloads.
+var tag = document.createElement('script');
+tag.src = "//www.youtube.com/iframe_api";
+
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
 var player;
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-	    events: {
-	        'onReady': onPlayerReady,
-	        'onStateChange': onPlayerStateChange
-	    }
-  	})
-};
+        events: {
+            'onClickPlay': onPlayerClickPlay
+        }
+    });
+}
+
+function onPlayerClickPlay(event) {
+	player.playVideo();
+}
+
+
 // The API will call this function when the video player is ready
 //function onPlayerReady(event) {
 //	event.target.playVideo();  // on mouseover... 
 //}
 
 
+/*
 
 function onPlayerReady(event) {
   // bind events
-  var playButton = $(event.target.c).parent().find('.play');
+  var playButton = $(event.target).parent().find('.play');
   playButton.on('click', function() {
     event.target.playVideo();
   });
 }
-
+*/
 
 
 
 // ===============================================
-// display event listeners
+// event listeners
 // ===============================================
 
 //click on playlist title to be taken to playlist
@@ -43,10 +55,12 @@ $('.title-container').on('click', function(event) {
 	event.preventDefault();
 })
 
-$('.player-icon').on('click', function(event) {
-	var thisVideo = $(this).sibling('iframe')
-	thisVideo.play();
-})
+$('.play').on('click', function () {
+   	var thisVideo = $(this).closest(".song-container").next('.player').children('iframe').attr('src');
+    
+    console.log(thisVideo)//$(this).fadeOut('normal');
+    thisVideo.playVideo();
+});
 
 /*
 // when hovering on song container, play the audio with the id of the song position
