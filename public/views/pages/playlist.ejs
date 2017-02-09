@@ -1,52 +1,87 @@
 <html>
 <head>
-	<% include ../partials/head.ejs %>	
+  <% include ../partials/head.ejs %>  
 </head>
 <body>
 
-	<header>
-		<% include ../partials/header.ejs %>
-	</header>
+  <header>
+    <% include ../partials/header.ejs %>
+  </header>
+  
+  <script src="http://www.youtube.com/player_api"></script>
 
-	<main>
-		<div class="container">
-			
-			<section class="col-sm-6 col-sm-offset-3">
-				<div class="article-banner">
-					
-					<article class="playlist">
-						<!--<img class="playlist-img" id="imgURL" src="<%= playlist %>" />-->
-						<h1 class="title"><%= playlist.title %></h1>
-						<p class="synopsis" id="synopsis"> <%= playlist.synopsis %></p>
-						<hr>
-					</article>
+  <main>
+    <div class="container">
+      
+      <section class="col-sm-6 col-sm-offset-3">
+        <div class="article-banner">
+          
+          <article class="playlist">
+            <!--<img class="playlist-img" id="imgURL" src="<%= playlist %>" />-->
+            <h1 class="title"><%= playlist.title %></h1>
+            <p class="synopsis" id="synopsis"> <%= playlist.synopsis %></p>
+            <hr>
+          </article>
+        
+  
+        <% for(var i=0; i<playlist.songs.length; i++) {%>
+          <% let count=i%>
+          <article class="song-container">
+  
+            <h1 class="artist-name"><%= playlist.songs[i].name %></h1>
+            <img class="song-imgURL" src="<%= playlist.songs[i].imgURL %>" />
+            <div class="player-container">
+              <a href="javascript:void(0);" id="play" class="player-icon"><img class="player-icon play" src="assets/images/icn_play.png" /></a>
+              <a href="javascript:void(0);"><img class="player-icon pause" src="assets/images/icn_pause.png" id="pause"></a>
 
-					<article class="song-container">
-						<h1 class="artist-name"><%= playlist.songs %></h1>
-						<img class="song-imgURL" src="https://i.ytimg.com/vi/zBn5aIfZElE/maxresdefault.jpg" />
-						<!--<audio class="songURL" src="http://upload.wikimedia.org/wikipedia/commons/6/6f/Cello_Live_Performance_John_Michel_Tchaikovsky_Violin_Concerto_3rd_MVT_applaused_cut.ogg" id="<%= 0 %>" />-->
-						<div class="player">
-							<a href="javascript:void(0);"><img class="player-icon play" src="assets/images/icn_play.png" /></a>
-							<a href="javascript:void(0);"><img class="player-icon pause" src="assets/images/icn_pause.png"></a>
-							<iframe width="560" height="315" id="<%= 0 %>" src="https://www.youtube.com/embed/wEBlaMOmKV4?rel=0&&enablejsapi=1" frameborder="0" allowfullscreen></iframe>
-						</div>
+              <script> 
+                var tag = document.createElement('script');
+                tag.src = "https://www.youtube.com/iframe_api";
 
-					</article>
+                var firstScriptTag = document.getElementsByTagName('script')[0];
+                firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                var player;
+
+                function onYouTubeIframeAPIReady() {
+                      player = new YT.Player('player', {
+                        events: {
+                          'onReady': onPlayerReady
+                        }
+                      });
+                }
+                function onPlayerReady(){
+                     player.cueVideoByUrl('<%= playlist.songs[i].songURL %>');
+                }
+              
+              </script>
+
+              <div id="player"></div>  
+
+            </div>
+            
+            <p class="song-description"> <%= playlist.songs[i].description %></p>
+          
+          </article>
+        <% } %>
+          
+          </article>
+  
 
 
-					<article class="playlist-footer">
-						<p class="keywords" id="keywords"><%= playlist.keywords %></p>
-					</article>
+          <article class="playlist-footer">
+            <p class="keywords" id="keywords"><%= playlist.keywords %></p>
+          </article>
 
-				</div>
-			</section>
+        </div>
+      </section>
 
-		</div>
-	</main>
+    </div>
+  </main>
 
-	<footer>
-		<% include ../partials/footer.ejs %>
-	</footer>
+  <footer>
+    <% include ../partials/footer.ejs %>
+  </footer>
 
 </body>
 </html>

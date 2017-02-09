@@ -10,8 +10,9 @@ const playlistSchema = mongoose.Schema({
   songs:[{
     name: String,
     artist: String,
-    songUrl: String,
-    imgURL: String
+    songURL: String,
+    imgURL: String, 
+    description: String,
   }],
   imgURL: String,
   type: String // 'song' or 'artist' list.

@@ -44,7 +44,7 @@ body {
 
 /* audio player */
 iframe {
-	display: none;
+	/* display: none; */
 }
 
 .player-icon {
