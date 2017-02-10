@@ -14,9 +14,9 @@ module.exports = function(app, passport) {
 		.then(playlists => {
 			res.render('pages/index', {
 				isAuthenticated: req.isAuthenticated(),
-				playlists: playlists
-				//message: '',
-				//title: 'Please work'
+				playlists: playlists,
+				message: ''
+//				title: 'Please work'
 			});
 		})
 		.catch(err => {
@@ -95,21 +95,6 @@ module.exports = function(app, passport) {
 	   })
 	});
 
-	app.get('/api/playlists', function(req, res) {
-		console.log('redirect to the playlist')
-		Playlist
-		.findByID(req.params.id)
-		.exec()
-		.then(playlist => {
-			res.render('pages/playlist', {
-				playlist: playlist
-			});
-		})
-		.catch(err => {
-			console.error(err);
-			res.status(500).json({ error: 'something went wrong' });
-		})
-	});
 
 
 
@@ -123,5 +108,16 @@ function sendToHomeIfNotAuthenticated(req, res, next) {
 	if (req.isAuthenticated())
 	return next();
 	//if user is not logged in, redirect them
-	res.render('pages/index', { message: req.flash('loginMessage') });
+	res.render('pages/index', { 
+		message: req.flash('loginMessage') }); // throws error w/out sending isAuthenticated and playlists
+};
+
+// if logged in, hide "login" and "Sign up" from menu options
+function hideLoginIfAuthenticated(req, res, next) {
+	//if user is logged in, hide menu options
+	if (req.isAuthenticated()) {
+		$('#login').addClass('hidden');
+		$('#signup').addClass('hidden');
+		$('#logout').removeClass('hidden');
+	}
 };
