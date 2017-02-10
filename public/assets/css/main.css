@@ -1,8 +1,7 @@
-/* header */
+/* header && navbar */
 .navbar-custom {
 	background-color: #fff;
 }
-
 
 div.container-fluid {
 	height: 100px;
@@ -30,6 +29,10 @@ h1.title-text {
 /* main page css */
 body {
 	background-color: #f4f4f4;
+}
+
+div.container {
+	padding-top: 80px;
 }
 
 /* article display on index.ejs */
@@ -79,6 +82,10 @@ iframe {
 
 /* footer */
 
+footer {
+	margin-top: 100px;
+	margin-bottom: 50px;
+}
 /* no display */
 .hidden {
 	display: none;
