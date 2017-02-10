@@ -30,7 +30,10 @@ module.exports = function(app, passport) {
       imgURL: req.body.imgURL,
       type: req.body.type
     })
-    .then(playlist => res.status(201).json(playlist))
+    .then(playlist => 
+      res.status(201).json(playlist),
+      res.redirect('/')
+    )
     .catch(err => {
       console.error(err);
       res.status(500).json({error: 'Something went wrong'});
