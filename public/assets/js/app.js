@@ -46,6 +46,9 @@ function removeSong() {
 	$(this).parent('div').remove();
 }
 
+function getFormInputs() {
+}
+
 // =================================
 // event listeners -> iframe video
 // =================================
@@ -90,6 +93,5 @@ $('.new-song-form').on('click', '.remove-song', function(event) {
 })
 
 $('#playlist-form').submit();
-
 
 });

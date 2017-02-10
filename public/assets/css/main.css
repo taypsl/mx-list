@@ -3,9 +3,35 @@
 	background-color: #fff;
 }
 
+
+div.container-fluid {
+	height: 100px;
+}
+
+nav.navbar-custom {
+	height: 100px;
+}
+
+.logo {
+	margin-left: 5px;
+	float: left;
+}
+
+.navbar-collapse {
+	margin: 50px 0 0 60%;
+}
+
+h1.title-text {
+	font-size: 1em;
+	font-weight: 600;
+	color: #000000;
+}
+
+/* main page css */
 body {
 	background-color: #f4f4f4;
 }
+
 /* article display on index.ejs */
 .article-container {
 	background-color: #fff;
