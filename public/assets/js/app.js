@@ -58,18 +58,20 @@ function getFormInputs() {
 		type: $('.type').val() // look for the one that's checked... ?
 	}
 
-	var song = {
-		id: $(`#${songId}`), //again, check if songId is reading as a variable
-		artist: $('#artist').val(),
-		name: $('#name').val(),
-		imgURL: $('#song-imgURL').val(),
-		songURL: $('#songURL').val(),
-		description: $('#description').val(),
-	}
+	// iterate over song divs to find values and add to songs array
+		var song = {
+			id: $(`#${songId}`), //again, check if songId is reading as a variable
+			artist: $('#artist').val(),
+			name: $('#name').val(),
+			imgURL: $('#song-imgURL').val(),
+			songURL: $('#songURL').val(),
+			description: $('#description').val(),
+		}
 
 	if (songId = i) {
 		// need to look at each song-form div and if it doesn't yet exist
 		// then add it to the songs[]
+		playlistData.songs.push(song);
 	}
 
 	$.ajax({
