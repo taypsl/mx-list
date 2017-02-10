@@ -14,7 +14,7 @@
 
 			<div class="mxlist newlist">
 				<!-- TODO instead if doing this, use JQUERY AJAX)-->
-				<form action="/api/playlists" method="POST" class="new-form">
+				<form action="/api/playlists" method="POST" class="new-form" id="new-form" name="newForm">
 					<div class="playlist-form" id="playlist-form">
 						<input type="text" placeholder="playlist title" name="title" id="title">
 						<input type="text" placeholder="synopsis" name="synopsis" id="synopsis">
@@ -26,16 +26,16 @@
 					<hr>
 						<input type="text" placeholder="artist" name="artist" id="artist">
 						<input type="text" placeholder="song name" name="name" id="name">
-						<input type="text" placeholder="link to image" name="link to image" id="song-imgURL">
-						<input type="text" placeholder="link to song" name="link to song" id="songURL">
-						<input type="text" placeholder="song description" name="song description" id="description">
+						<input type="text" placeholder="link to image" name="linkToImage" id="song-imgURL">
+						<input type="text" placeholder="link to song" name="linkToSong" id="songURL">
+						<input type="text" placeholder="song description" name="description" id="description">
 					</div>
 					<hr>					
 					<div class="new-song-form"></div>
 					<hr>
 					<a class="add-song-button" href="#"><img src="assets/images/icn_add.png">Add song</a>
 					
-					<input type="submit">Submit
+					<input type="submit" id="submitForm" name="submit">
 				</form>
 
 			</div>

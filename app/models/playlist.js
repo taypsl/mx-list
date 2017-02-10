@@ -8,6 +8,7 @@ const playlistSchema = mongoose.Schema({
   synopsis: String,
   keywords: { type: Array, default: [] },
   songs:[{
+    id: String,
     name: String,
     artist: String,
     songURL: String,

@@ -25,13 +25,13 @@ function onPlayerReady(){
 // =================================
 // add songs to new playlist form
 // =================================
+var songId = 0 // to give songs within playlists an id
 
 function addSongToForm() {
 	var newSong = $('.new-song-form');	
 	var addSongButton = $('.add-song-button');
-
 	$(newSong).append(`
-		<div class="song-form">
+		<div class="song-form" id="${songId}"> 
 			<input type="text" placeholder="artist" name="artist" id="artist">
 			<input type="text" placeholder="song name" name="name" id="name">
 			<input type="text" placeholder="link to image" name="link to image" id="song-imgURL">
@@ -40,13 +40,48 @@ function addSongToForm() {
 			<a href="#" class="remove-song">Remove</a>
 			<hr class="song-line">
 		</div>`);
+	songId++
 }
+//check if ln34 is reading songId as a variable
 
 function removeSong() {
 	$(this).parent('div').remove();
 }
 
 function getFormInputs() {
+	var playlistData = {
+		title: $('#title').val(),
+		synopsis: $('#synopsis').val(),
+		keywords: $('#keywords').val(),
+		songs: [],
+		imgURL: $('#imgURL').val(),
+		type: $('.type').val() // look for the one that's checked... ?
+	}
+
+	var song = {
+		id: $(`#${songId}`), //again, check if songId is reading as a variable
+		artist: $('#artist').val(),
+		name: $('#name').val(),
+		imgURL: $('#song-imgURL').val(),
+		songURL: $('#songURL').val(),
+		description: $('#description').val(),
+	}
+
+	if (songId = i) {
+		// need to look at each song-form div and if it doesn't yet exist
+		// then add it to the songs[]
+	}
+
+	$.ajax({
+		type: 'POST',
+		url: '/api/playlists',
+		data: playlistData,
+		dataType: 'json',
+			encode: true,
+	})
+	.done(function(formData) {
+		console.log(formData);
+	});
 }
 
 // =================================
@@ -92,6 +127,10 @@ $('.new-song-form').on('click', '.remove-song', function(event) {
 	event.preventDefault();
 })
 
-$('#playlist-form').submit();
+$('#submitForm').on('click', function(event) {
+	getFormInputs();
+	songId=0;
+	event.preventDefault();
+});
 
 });

@@ -95,9 +95,6 @@ module.exports = function(app, passport) {
 	   })
 	});
 
-
-
-
 };
 
 
@@ -112,12 +109,6 @@ function sendToHomeIfNotAuthenticated(req, res, next) {
 		message: req.flash('loginMessage') }); // throws error w/out sending isAuthenticated and playlists
 };
 
-// if logged in, hide "login" and "Sign up" from menu options
-function hideLoginIfAuthenticated(req, res, next) {
-	//if user is logged in, hide menu options
-	if (req.isAuthenticated()) {
-		$('#login').addClass('hidden');
-		$('#signup').addClass('hidden');
-		$('#logout').removeClass('hidden');
-	}
-};
+
+
+
