@@ -95,6 +95,22 @@ module.exports = function(app, passport) {
 	   })
 	});
 
+	app.get('/api/playlists', function(req, res) {
+		console.log('redirect to the playlist')
+		Playlist
+		.findByID(req.params.id)
+		.exec()
+		.then(playlist => {
+			res.render('pages/playlist', {
+				playlist: playlist
+			});
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ error: 'something went wrong' });
+		})
+	});
+
 
 
 };

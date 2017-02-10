@@ -89,6 +89,7 @@ $('.new-song-form').on('click', '.remove-song', function(event) {
 	event.preventDefault();
 })
 
+$('#playlist-form').submit();
 
 
 });
