@@ -65,6 +65,16 @@ $('.pause').on('click', function(event) {
 	event.preventDefault();
 })
 
+/* === add later when it's working ===>
+$('.song-container').on('mouseover', function(event) {
+	player.playVideo();
+})
+
+$('.song-container').on('mouseout', function(event) {
+	player.pauseVideo();
+})
+*/
+
 // =================================
 // event listeners -> add to form
 // =================================
@@ -79,14 +89,6 @@ $('.new-song-form').on('click', '.remove-song', function(event) {
 	event.preventDefault();
 })
 
-/*
-$('.song-container').on('mouseover', function(event) {
-	player.playVideo();
-})
 
-$('.song-container').on('mouseout', function(event) {
-	player.pauseVideo();
-})
-*/
 
 });
