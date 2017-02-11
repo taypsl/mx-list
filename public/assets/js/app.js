@@ -94,7 +94,10 @@ $(document).ready(function() {
 				type: 'POST',
 				url: '/api/playlists',
 				data: playlistData,
+				contentType: 'application/json',
 				dataType: 'json',
+				//    data: JSON.stringify(data)
+
 				encode: true,
 			})
 			.done(function(formData) {
