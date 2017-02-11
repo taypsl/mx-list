@@ -69,7 +69,7 @@ describe('Playlist API resource', function() {
 			.post('/api/playlists')
 			.send(newPlaylist)
 			.then(function(res) {
-				res.should.have.status(201);
+				res.should.have.status(200);
 				res.should.be.json;
 				res.should.be.a('object');
 				res.body.should.include.keys(['_id', 'username','keywords', 'title', 'synopsis', 'songs', 'imgURL', 'type']);
