@@ -35,6 +35,16 @@ div.container {
 	padding-top: 80px;
 }
 
+a.create {
+	text-decoration: none;
+	color: black;
+}
+
+a.create:hover {
+	text-decoration: none;
+	color: #f4bc42;
+}
+
 /* article display on index.ejs */
 .article-container {
 	background-color: #fff;
@@ -58,18 +68,24 @@ div.container {
 
 .yellow-line {
 	height: 4px;
-	color: #f9e00c;
-	background-color: #f9e00c;
+	color: #f4bc42;
+	border: 1px solid #f4bc42;
+	background-color: #f4bc42;
 }
 
 .article-synopsis {
 	margin-left: 10px;
 }
 
-/* playlist/:id */
+/* new playlist form */
+
 .form-img {
 	height: 46px;
 	text-align: center;
+}
+
+#title {
+	display: inline;
 }
 
 a.add-song-button, a.remove-song-button {
@@ -85,9 +101,16 @@ a.add-song-button, a.remove-song-button {
 hr {
 	border: 1px solid gainsboro;
 }
+
+
 /* display playlist/:id */
+.img-container {
+	width: 600px;
+}
 
-
+.img-fluid {
+	width:100%
+}
 
 /* audio player */
 iframe {
@@ -99,10 +122,6 @@ iframe {
 }
 
 
-/* create new playlist + form */
-#title {
-	display: inline;
-}
 
 
 /* footer */
