@@ -23,11 +23,11 @@
             <hr>
           </article>
         
-  
+
         <% for(var i=0; i<playlist.songs.length; i++) {%>
           <% let count=i%>
           <article class="song-container">
-  
+
             <h1 class="artist-name"><%= playlist.songs[i].name %></h1>
             <div class="img-container">
               <img class="img-fluid song-imgURL" alt="Responsive image" src="<%= playlist.songs[i].imgURL %>" />
@@ -37,7 +37,7 @@
               <a href="javascript:void(0);" id="play" class="player-icon"><img class="player-icon play" src="assets/images/icn_play.png" /></a>
               <a href="javascript:void(0);"><img class="player-icon pause" src="assets/images/icn_pause.png" id="pause"></a>
 
-              <div id="player"> playlist.songs[i].songURL </div>  
+              <div id="player"><%= playlist.songs[i].songURL %></div>  
 
             </div>
             
