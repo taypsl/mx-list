@@ -67,9 +67,27 @@ div.container {
 }
 
 /* playlist/:id */
-.song-imgURL {
-	width: 400px;
+.form-img {
+	height: 46px;
+	text-align: center;
 }
+
+a.add-song-button, a.remove-song-button {
+	text-decoration: none;
+	color: black;
+}
+
+.rs-btn {
+	position: relative;
+	text-align: right;
+	box-sizing: content-box;
+}
+hr {
+	border: 1px solid gainsboro;
+}
+/* display playlist/:id */
+
+
 
 /* audio player */
 iframe {
@@ -79,6 +97,13 @@ iframe {
 .player-icon {
 	width: 40px;
 }
+
+
+/* create new playlist + form */
+#title {
+	display: inline;
+}
+
 
 /* footer */
 

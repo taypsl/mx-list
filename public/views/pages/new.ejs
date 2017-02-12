@@ -12,25 +12,59 @@
 	<main>
 		<div class="container">
 
-			<div class="mxlist newlist">
-				<!-- TODO instead if doing this, use JQUERY AJAX)-->
-				<form action="/api/playlists" method="POST" class="new-form" id="new-form" name="newForm">
-					<div class="playlist-form" id="playlist-form">
-						<input type="text" placeholder="playlist title" name="title" id="title">
-						<input type="text" placeholder="synopsis" name="synopsis" id="synopsis">
-						<input type="text" placeholder="keywords" name="keywords" id="keywords">
-						<input type="radio" name="type" class="type" value="artist" id="type-artist" checked> Artist
-						<input type="radio" name="type" class="type" value="song" id="type-song"> Song
+			<form action="/api/playlists" method="POST" class="new-form" id="new-form">
+				<div class="playlist-form" id="playlist-form">
+
+
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label for="title" class="col-sm-2 col-form-label">MX-list Title</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" placeholder="playlist title" id="title">
+						</div>
 					</div>
-					<hr>
-					<div class="new-song-form"></div>
-					<hr>
-					<a class="add-song-button" href="#"><img src="assets/images/icn_add.png">Add song</a>
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label for="synopsis" class="col-sm-2 col-form-label">Synopsis</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" placeholder="synopsis" id="synopsis">
+						</div>
+					</div>
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label for="keywords" class="col-sm-2 col-form-label">Keywords</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" placeholder="keywords" id="keywords">
+							<small id="keywordHelp" class="form-text text-muted">Keywords separated by spaces</small>
+						</div>
+					</div>
 
-					<input type="submit" id="submitForm" name="submit">
-				</form>
+					<fieldset class="form-group row col-sm-8 col-sm-offset-2">
+						<label for="optionsRadios" class="col-sm-2 col-form-label">Playlist type</label>
+						<div class="col-sm-10">
+						    <div class="form-check">
+						      <label class="form-check-label">
+						        <input type="radio" class="form-check-input" name="optionsRadios" id="type-artist" value="type-artist" checked>
+						        <em>Artist-focused:</em> This is a list of cool/new/popular/obscure bands and musical artists.
+						      </label>
+						    </div>
+						    <div class="form-check">
+						    <label class="form-check-label">
+						        <input type="radio" class="form-check-input" name="optionsRadios" id="type-song" value="type-song">
+						        <em>Song-focused:</em> This is a list of the best/worst/weirdest/other songs.
+						      </label>
+						    </div>
+						</div>
+					</fieldset>
 
-			</div>
+				</div>
+				
+				<div class="row col-sm-12"><hr></div>
+				
+				<div class="song-form"></div>
+				
+				<div class="row col-sm-8 col-sm-offset-2"><a class="add-song-button" href="#"><span class="glyphicon glyphicon-plus"></span> Add</a></div>
+
+				<button class="btn btn-warning" type="submit" id="submitForm" name="submit">Submit</button>
+			</form>
+
 		</div>
 	</main>
 

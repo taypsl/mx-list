@@ -10,17 +10,17 @@ $(document).ready(function() {
 	var firstScriptTag = document.getElementsByTagName('script')[0];
 	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-
 	function onYouTubeIframeAPIReady() {
 		player = new YT.Player('player', {
 			events: {
 				'onReady': onPlayerReady
 			}
 		});
-	}
+	};
+
 	function onPlayerReady(){
 		player.cueVideoByUrl('<%= playlist.songs[i].songURL %>');
-	}
+	};
 
 	// =================================
 	// add songs to new playlist form
@@ -28,130 +28,144 @@ $(document).ready(function() {
 	var songId = 0 // to give songs within playlists an id
 
 	function addSongToForm() {
-		var newSong = $('.new-song-form');
+		var newSong = $('.song-form');
 		var addSongButton = $('.add-song-button');
 		$(newSong).append(`
-			<div class="song-form" id="${songId}">
-			<input type="text" placeholder="artist" name="artist" class="artist">
-			<input type="text" placeholder="song name" name="name" class="name">
-			<input type="text" placeholder="link to image" name="link to image" class="song-imgURL">
-			<input type="text" placeholder="link to song" name="link to song" class="songURL">
-			<input type="text" placeholder="song description" name="song description" class="description">
-			<a href="#" class="remove-song">Remove</a>
-			<hr class="song-line">
-			</div>`);
-			songId++
+			<div class="new-song-form" id="${songId}">
+				
+				<div class="form-group row col-sm-8 col-sm-offset-2">
+					<label class="col-sm-2 col-form-label"></label>
+					<div class="col-sm-10">
+						<input class="form-control artist" type="text" placeholder="artist" name="artist">
+					</div>
+				</div>
+				<div class="form-group row col-sm-8 col-sm-offset-2">
+					<label class="col-sm-2 col-form-label"></label>
+					<div class="col-sm-10">
+						<input class="form-control song-imgURL" type="text" placeholder="link to song" name="song-imgURL">
+					</div>
+				</div>
+				<div class="form-group row col-sm-8 col-sm-offset-2">
+					<label class="col-sm-2 col-form-label"></label>
+					<div class="col-sm-10">
+						<input class="form-control name" type="text" placeholder="most essential song" name="name">
+					</div>
+				</div>
+				<div class="form-group row col-sm-8 col-sm-offset-2">
+					<label class="col-sm-2 col-form-label"></label>
+					<div class="col-sm-10">
+						<input class="form-control songURL" type="text" placeholder="YouTube link" name="songURL">
+					</div>
+				</div>
+				<div class="form-group row col-sm-8 col-sm-offset-2">
+					<label class="col-sm-2 col-form-label"></label>
+					<div class="col-sm-10">
+						<textarea class="form-control description" type="text" rows="3" placeholder="description" name="description"></textarea>
+					</div>
+				
+					<div class="rs-btn"><a class="remove-song-button" href="#"><span class="glyphicon glyphicon-minus black"></span> Remove</a></div>
+				</div>			
+
+				<div class="row col-sm-12"><hr></div>
+
+			</div>
+		`);
+		
+		songId++
+	};
+	
+	addSongToForm();
+
+	function removeSong() {
+		$(this).parent('div').remove();
+	};
+
+	function getFormInputs() {
+
+		var playlistData = {
+			title: $('#title').val(),
+			synopsis: $('#synopsis').val(),
+			keywords: $('#keywords').val().split(" "),
+			songs: [],
+			imgURL: $('#imgURL').val(),
+			type: $('.type').val() // look for the one that's checked... ?
 		}
-		addSongToForm()
-		//check if ln34 is reading songId as a variable
 
-		function removeSong() {
-			$(this).parent('div').remove();
-		}
+		songId=0;
 
-		function getFormInputs() {
+		var songsForms = $('.new-song-form');
 
-			var playlistData = {
-				title: $('#title').val(),
-				synopsis: $('#synopsis').val(),
-				keywords: $('#keywords').val().split(" "),
-				songs: [],
-				imgURL: $('#imgURL').val(),
-				type: $('.type').val() // look for the one that's checked... ?
+		for(var i=0; i<songsForms.length; i++) {
+			var item = songsForms[i];
+			var song = {
+				artist: $(item).find('.artist').val(),
+				name: $(item).find('.name').val(),
+				imgURL: $(item).find('.song-imgURL').val(),
+				songURL: $(item).find('.songURL').val(),
+				description: $(item).find('.description').val()
 			}
-
-			songId=0;
-
-			var songsForms = $('.song-form');
-
-
-			for(var i=0; i<songsForms.length; i++){
-				var item = songsForms[i];
-				var song = {
-					artist: $(item).find(".artist").val()
-				}
-				playlistData.songs.push(song)
-			}
-
-
-			// iterate over song divs to find values and add to songs array
-			// var song = {
-			// 	id: $(`#${songId}`), //again, check if songId is reading as a variable
-			// 	artist: $('#artist').val(),
-			// 	name: $('#name').val(),
-			// 	imgURL: $('#song-imgURL').val(),
-			// 	songURL: $('#songURL').val(),
-			// 	description: $('#description').val(),
-			// }
-
-			// if (songId = i) {
-			// 	// need to look at each song-form div and if it doesn't yet exist
-			// 	// then add it to the songs[]
-			// 	playlistData.songs.push(song);
-			// }
-
-			$.ajax({
-				type: 'POST',
-				url: '/api/playlists',
-				data: playlistData,
-				contentType: 'application/json',
-				dataType: 'json',
-				//    data: JSON.stringify(data)
-
-				encode: true,
-			})
-			.done(function(formData) {
-				console.log(formData);
-			});
+			playlistData.songs.push(song)
 		}
 
-		// =================================
-		// event listeners -> iframe video
-		// =================================
-
-		$('.title-container').on('click', function(event) {
-			location.href=`/playlists/${this.id}`;
-			event.preventDefault();
+		$.ajax({
+			type: 'POST',
+			url: '/api/playlists',
+			data: playlistData,
+			dataType: 'json',
+			encode: true
+		})
+		.done(function(data) {
+			console.log(data);
+			// form validation
 		});
+		event.preventDefault();
+	};
 
-		$('.play').on('click', function(event) {
-			player.playVideo();
-			event.preventDefault();
-		})
+	// =================================
+	// event listeners -> iframe video
+	// =================================
 
-		$('.pause').on('click', function(event) {
-			player.pauseVideo();
-			event.preventDefault();
-		})
+	$('.title-container').on('click', function(event) {
+		location.href=`/playlists/${this.id}`;
+		event.preventDefault();
+	});
 
-		/* === add later when it's working ===>
-		$('.song-container').on('mouseover', function(event) {
+	$('.play').on('click', function(event) {
+		player.playVideo();
+		event.preventDefault();
+	});
+
+	$('.pause').on('click', function(event) {
+		player.pauseVideo();
+		event.preventDefault();
+	});
+
+	/* === add later when it's working ===>
+	$('.song-container').on('mouseover', function(event) {
 		player.playVideo();
 	})
 
 	$('.song-container').on('mouseout', function(event) {
-	player.pauseVideo();
-})
-*/
+		player.pauseVideo();
+	})
+	*/
 
-// =================================
-// event listeners -> add to form
-// =================================
+	// =================================
+	// event listeners -> add to form
+	// =================================
+	$('.add-song-button').on('click', function(event) {
+		event.preventDefault();
+		addSongToForm();
+	});
 
-$('.add-song-button').on('click', function(event) {
-	addSongToForm();
-	event.preventDefault();
-})
+	$('.song-form').on('click', '.remove-song-button', function(event) {
+		event.preventDefault();
+		$(this).parents('.new-song-form').remove();
+	});
 
-$('.new-song-form').on('click', '.remove-song', function(event) {
-	$(this).parent('div').remove();
-	event.preventDefault();
-})
-
-$('#submitForm').on('click', function(event) {
-	event.preventDefault();
-	getFormInputs();
-
-});
+	$('#submitForm').on('click', function(event) {
+		event.preventDefault();
+		getFormInputs();
+	});
 
 });
