@@ -61,7 +61,7 @@ $(document).ready(function() {
 				<div class="form-group row col-sm-8 col-sm-offset-2">
 					<label class="col-sm-2 col-form-label"></label>
 					<div class="col-sm-10">
-						<textarea class="form-control description" type="text" rows="3" placeholder="description" name="description"></textarea>
+						<textarea class="form-control description" type="text" rows="3" cols="50" placeholder="description" name="description"></textarea>
 					</div>
 				
 					<div class="rs-btn"><a class="remove-song-button" href="#"><span class="glyphicon glyphicon-minus black"></span> Remove</a></div>
@@ -113,12 +113,12 @@ $(document).ready(function() {
 			url: '/api/playlists',
 			data: playlistData,
 			dataType: 'json',
-			encode: true
+			encode: true,
 		})
-		.done(function(data) {
-			console.log(data);
-			// form validation
-		});
+			.done(function(data) {
+				//console.log(data);
+
+			});
 		event.preventDefault();
 	};
 
@@ -167,6 +167,10 @@ $(document).ready(function() {
 	$('#submitForm').on('click', function(event) {
 		event.preventDefault();
 		getFormInputs();
+		console.log('submit was clicked');
+		var id = 	
+		window.location = ('/');
+
 	});
 
 });

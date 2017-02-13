@@ -94,7 +94,6 @@ a.add-song-button, a.remove-song-button {
 }
 
 .rs-btn {
-	position: relative;
 	text-align: right;
 	box-sizing: content-box;
 }

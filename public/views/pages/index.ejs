@@ -22,7 +22,7 @@
 				</div>
 			
 				<section>
-					<% for(var i=0; i<playlists.length; i++) {%>
+					<% for(var i=playlists.length-1; i>=0; i--) {%>
 						<% let count=i%>
 						<article class="article-container">
 							<div class="title-container" id="<%= playlists[i]._id %>">
