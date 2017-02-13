@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
 			res.render('pages/index', {
 				isAuthenticated: req.user,
 				playlists: playlists,
-				message: '',
+				message: req.flash('someError')
 				//title: 'Please work'
 			});
 		})
@@ -50,7 +50,7 @@ module.exports = function(app, passport) {
 		res.render('pages/login',  { message: req.flash('loginMessage') })
 	});
 	//	process the login form
-	
+
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect: '/profile', // redirect to the secure profile section
 		failureRedirect: '/login', // redirect back to the signup page if there is an error
@@ -58,9 +58,9 @@ module.exports = function(app, passport) {
 	}));
 
 	app.get('/playlists/me',
-	  passport.authenticate('basic', { session: false }),
-	  function(req, res) {
-	    res.json(req.user);
+	passport.authenticate('basic', { session: false }),
+	function(req, res) {
+		res.json(req.user);
 	});
 
 
@@ -85,25 +85,25 @@ module.exports = function(app, passport) {
 	// view selected playlist
 	// ====================================
 	app.get('/playlists/new', sendToHomeIfNotAuthenticated, function(req, res) {
-		res.render('pages/new', { 
+		res.render('pages/new', {
 			message: req.flash('loginMessage'),
 			isAuthenticated: req.user
- 		});
+		});
 	});
 
 	app.get('/playlists/:id', function(req, res) {
 		Playlist
-	   .findById(req.params.id)
-	   .exec()
-	   .then(playlist => {
+		.findById(req.params.id)
+		.exec()
+		.then(playlist => {
 			res.render('pages/playlist', {
 				playlist: playlist,
 			});
-	   })
-	   .catch(err => {
-	     console.error(err);
-	     res.status(500).json({ error: 'something went wrong' });
-	   })
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ error: 'something went wrong' });
+		})
 	});
 
 };
@@ -118,28 +118,8 @@ function sendToHomeIfNotAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();
 	}
-	//if user is not logged in, redirect them
-	
-	
-/*
-	res.render('pages/index', {
-		message: req.flash('loginMessage'),
-		isAuthenticated: req.isAuthenticated()
-
-	});
-*/
 	else {
+		req.flash('someError', "You are not logged in");
 		res.redirect('/');
-		return req.flash({message: 'loginMessage'});
-
+	};
 };
-
-//	res.redirect('/');
-//	message: req.flash({message: 'loginMessage'});
-
-	
-
-
-};
-
-
