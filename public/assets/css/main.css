@@ -1,22 +1,24 @@
 /* header && navbar */
-.navbar-custom {
-	background-color: #fff;
-}
-
 div.container-fluid {
 	height: 100px;
 }
 
 nav.navbar-custom {
 	height: 100px;
+	background-color: #fff;
 }
 
-div#bs-navbar-collapse.navbar-collapse.collapse {
-	margin: 50px 20px 0 0;
+.navbar-collapse-custom, div#bs-navbar-collapse.navbar-collapse.collapse  {
+	margin: 50px 20px 10px 0;
 }
+
+div#bs-navbar-collapse.navbar-collapse.collapse.in {
+	margin:0 20px 10px 0;
+	background-color: #f9f9f9;
+}
+
 
 button.navbar-toggle.collapsed {
-	margin-top: 50px;
 	border: none;
 }
 
@@ -34,17 +36,14 @@ h1.title-text {
 .navbar-default .navbar-nav > li > a {
     color: #777;
 }
+
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
     color: #000;
     font-weight: 700;
 }
 
-.nav-links-wrapper:hover {
-    height: 10px;
-    background-color: #f4bc42;
-    color: #000;
-}
+
 
 /* main page css */
 body {
@@ -90,9 +89,13 @@ a.create:hover {
 /* article display on index.ejs */
 .article-container {
 	background-color: #fff;
-	margin-top: 30px;
-	border: .5px solid #bababa;
+	margin-top: 40px;
+	border: 1px solid #f9f9f9;
 	padding: 0 0 0 30px;
+}
+
+.article-container:hover {
+	cursor: pointer;
 }
 
 .title-container {
@@ -183,6 +186,10 @@ p.song-description {
 }
 
 /* login and signup pages */ 
+.login-title {
+	margin-bottom: 20px;
+}
+
 .login-btn {
 	width: 100px;
 	height: 45px;
