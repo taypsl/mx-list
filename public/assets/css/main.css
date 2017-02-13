@@ -169,8 +169,9 @@ p.synopsis {
 	margin: 20px 0 0 0;
 }
 
-h2.artist-name {
-	margin-bottom: 20px;
+.artist-name {
+	font-family: 'Space Mono', monospace;
+	font-weight: 400;
 }
 
 .img-container {
