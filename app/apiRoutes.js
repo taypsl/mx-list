@@ -30,9 +30,8 @@ module.exports = function(app, passport) {
       imgURL: req.body.imgURL,
       type: req.body.type
     })
-    .then(playlist => 
+    .then(playlist =>
       res.status(201).json(playlist)
-      //res.redirect('/')
     )
     .catch(err => {
       console.error(err);
@@ -68,6 +67,11 @@ module.exports = function(app, passport) {
   // delete playlist
   // ====================================
   app.delete('/api/playlists/:id',  (req, res) => {
+    // TODO VALIDATE USER IS LOGGED IN & IS OWNER OF PLAYLIST
+    // Playlist.find()  playlist
+    // if req.user.id === playlist.author
+    //   delete.
+
     Playlist
     .findByIdAndRemove(req.params.id)
     .exec()

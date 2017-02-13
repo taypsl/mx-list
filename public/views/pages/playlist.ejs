@@ -1,21 +1,22 @@
 <html>
 <head>
-  <% include ../partials/head.ejs %>  
+  <% include ../partials/head.ejs %>
 </head>
 <body>
 
   <header>
     <% include ../partials/header.ejs %>
   </header>
-  
+
   <script src="http://www.youtube.com/player_api"></script>
 
   <main>
+    <div class="hidden" id="playlist_id"><%= playlist._id %></div>
     <div class="container">
-      
+
       <section class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
         <div class="article-banner">
-          
+
           <article class="playlist">
             <!--<img class="playlist-img" id="imgURL" src="<%= playlist %>" />-->
             <h1 class="title"><%= playlist.title %></h1>
@@ -23,32 +24,33 @@
             <hr class="playlist-spacer">
           </article>
 
-        <% for(var i=0; i<playlist.songs.length; i++) {%>
-          <% let count=i%>
-          <article class="song-container">
+          <% for(var i=0; i<playlist.songs.length; i++) {%>
+            <% let count=i%>
+            <article class="song-container">
 
-            <h2 class="song-name"><%= playlist.songs[i].name %></h2>
-            <h3 class="artist-name"><i><%= playlist.songs[i].artist %></i></h3>
-            <div class="img-container">
-              <img class="img-fluid song-imgURL" alt="Responsive image" src="<%= playlist.songs[i].imgURL %>" />
-            </div>
-            
-            <div class="player-container">
-              <a href="javascript:void(0);" id="play" class="player-icon"><img class="player-icon play" src="assets/images/icn_play.png" /></a>
-              <a href="javascript:void(0);"><img class="player-icon pause" src="assets/images/icn_pause.png" id="pause"></a>
+              <h2 class="song-name"><%= playlist.songs[i].name %></h2>
+              <h3 class="artist-name"><i><%= playlist.songs[i].artist %></i></h3>
+              <div class="img-container">
+                <img class="img-fluid song-imgURL" alt="Responsive image" src="<%= playlist.songs[i].imgURL %>" />
+              </div>
 
-              <div id="player"><%= playlist.songs[i].songURL %></div>  
+              <div class="player-container">
+                <a href="javascript:void(0);" id="play" class="player-icon"><img class="player-icon play" src="assets/images/icn_play.png" /></a>
+                <a href="javascript:void(0);"><img class="player-icon pause" src="assets/images/icn_pause.png" id="pause"></a>
 
-            </div>
-            
-            <p class="song-description"> <%= playlist.songs[i].description %></p>
-          
-          <hr class="playlist-spacer">
+                <div id="player"><%= playlist.songs[i].songURL %></div>
+
+              </div>
+
+              <p class="song-description"> <%= playlist.songs[i].description %></p>
+
+              <hr class="playlist-spacer">
+            </article>
+            <% } %>
+            <button class="delete-playlist-button">Delete</button>
+
           </article>
-        <% } %>
-          
-        
-          
+
           <article class="playlist-footer">
             <p class="keywords" id="keywords"><%= playlist.keywords %></p>
           </article>
