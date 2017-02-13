@@ -15,8 +15,8 @@ module.exports = function(app, passport) {
 			res.render('pages/index', {
 				isAuthenticated: req.isAuthenticated(),
 				playlists: playlists,
-				message: ''
-//				title: 'Please work'
+				message: '',
+				//title: 'Please work'
 			});
 		})
 		.catch(err => {
@@ -50,11 +50,19 @@ module.exports = function(app, passport) {
 		res.render('pages/login',  { message: req.flash('loginMessage') })
 	});
 	//	process the login form
+	
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect: '/profile', // redirect to the secure profile section
 		failureRedirect: '/login', // redirect back to the signup page if there is an error
 		failureFlash: true // allow flash messages
 	}));
+
+	app.get('/playlists/me',
+	  passport.authenticate('basic', { session: false }),
+	  function(req, res) {
+	    res.json(req.user);
+	});
+
 
 	// ====================================
 	// user protected view
@@ -76,8 +84,11 @@ module.exports = function(app, passport) {
 	// ====================================
 	// view selected playlist
 	// ====================================
-	app.get('/playlists/new', /*sendToHomeIfNotAuthenticated,*/ function(req, res) {
-		res.render('pages/new');
+	app.get('/playlists/new', sendToHomeIfNotAuthenticated, function(req, res) {
+		res.render('pages/new', {
+			user: req.user
+
+		});
 	});
 
 	app.get('/playlists/:id', function(req, res) {
@@ -99,14 +110,29 @@ module.exports = function(app, passport) {
 
 
 
+
+
 //function to check if user is logged in
 function sendToHomeIfNotAuthenticated(req, res, next) {
 	//if user is logged in
 	if (req.isAuthenticated())
 	return next();
 	//if user is not logged in, redirect them
-	res.render('pages/index', { 
-		message: req.flash('loginMessage') }); // throws error w/out sending isAuthenticated and playlists
+	
+	
+/*
+	res.render('pages/index', {
+		message: req.flash('loginMessage'),
+		isAuthenticated: req.isAuthenticated()
+
+	});
+*/
+
+
+	res.redirect('/');
+	//req.flash({message: 'loginMessage'});
+
+	
 };
 
 

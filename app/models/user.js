@@ -7,6 +7,8 @@ const userSchema = mongoose.Schema({
     email: String,
     password: String,
   }
+ // resetPasswordToken: String,
+ // resetPasswordExpires: Date
 });
 
 // methods

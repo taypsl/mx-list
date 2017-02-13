@@ -7,6 +7,7 @@ module.exports = function(passport) {
 	//===============================
 	//serialize user
 	passport.serializeUser(function(user, done) {
+		//done(null, user.id);
 		done(null, user.id);
 	});
 
@@ -34,7 +35,6 @@ module.exports = function(passport) {
 				} else {
 					var newUser = new User();
 					newUser.local.email = email;
-					//	newUser.local.username = username;
 					newUser.local.password = newUser.generateHash(password);
 					newUser.save(function(err) {
 						if (err)

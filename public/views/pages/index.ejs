@@ -14,8 +14,11 @@
 
 			<div class="col-sm-6 col-sm-offset-3">
 				
+				<%  if(message.length>0) { %>
+						<div class="alert alert-danger"><%= message %></div>
+				<% } %>
 
-				<h1>isAuthenticated</h1>
+				<h3>isAuthenticated</h1>
 				<p><%= isAuthenticated %></p>
 				<div class="new-playlist" id="new-playlist">
 					<h3><a class="create" href="/playlists/new"><span class="glyphicon glyphicon-plus"></span> Create Playlist</a></h3>
@@ -27,7 +30,6 @@
 						<article class="article-container">
 							<div class="title-container" id="<%= playlists[i]._id %>">
 								<h1 class="article-title"><%= playlists[i].title %></h1>
-								<p class="playlist-id"> <%= playlists[i]._id %></p>
 							</div>
 							<hr class="yellow-line">
 						</article>

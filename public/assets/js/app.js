@@ -85,6 +85,7 @@ $(document).ready(function() {
 
 		var playlistData = {
 			title: $('#title').val(),
+			//username: $('username').val(), // get username from form to store author with playlist
 			synopsis: $('#synopsis').val(),
 			keywords: $('#keywords').val().split(" "),
 			songs: [],
