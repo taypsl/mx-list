@@ -18,8 +18,10 @@
 						<div class="alert alert-danger"><%= message %></div>
 				<% } %>
 
+
 				<h3>isAuthenticated</h1>
 				<p><%= isAuthenticated %></p>
+
 				<div class="new-playlist" id="new-playlist">
 					<h3><a class="create" href="/playlists/new"><span class="glyphicon glyphicon-plus"></span> Create Playlist</a></h3>
 				</div>
@@ -31,7 +33,7 @@
 							<div class="title-container" id="<%= playlists[i]._id %>">
 								<h1 class="article-title"><%= playlists[i].title %></h1>
 							</div>
-							<hr class="yellow-line">
+							<hr class="yellow-line"><div class="author"><%= playlists[i].username %></div>
 						</article>
 					<% } %>
 				</section>

@@ -11,12 +11,17 @@ nav.navbar-custom {
 	height: 100px;
 }
 
-.navbar-collapse {
-	margin: 50px 0 0 60%;
+div#bs-navbar-collapse.navbar-collapse.collapse {
+	margin: 50px 20px 0 0;
+}
+
+button.navbar-toggle.collapsed {
+	margin-top: 50px;
+	border: none;
 }
 
 .logo {
-	margin-left: 5px;
+	margin-left: 10px;
 	float: left;
 }
 
@@ -26,6 +31,20 @@ h1.title-text {
 	color: #000000;
 }
 
+.navbar-default .navbar-nav > li > a {
+    color: #777;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #000;
+    font-weight: 700;
+}
+
+.nav-links-wrapper:hover {
+    height: 10px;
+    background-color: #f4bc42;
+    color: #000;
+}
 
 /* main page css */
 body {
