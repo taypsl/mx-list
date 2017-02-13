@@ -73,6 +73,7 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	// reuse home page code... pass it a different array of playlists
 	// ====================================
 	// logout
 	// ====================================

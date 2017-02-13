@@ -175,11 +175,11 @@ p.synopsis {
 }
 
 .img-container {
-	width: 600px;
+	width: 100%;
 }
 
 .img-fluid {
-	width:100%
+	width: 100%
 }
 
 /* audio player */
