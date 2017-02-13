@@ -31,8 +31,8 @@ module.exports = function(app, passport) {
       type: req.body.type
     })
     .then(playlist => 
-      res.status(201).json(playlist),
-      res.redirect('/')
+      res.status(201).json(playlist)
+      //res.redirect('/')
     )
     .catch(err => {
       console.error(err);

@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
 			res.render('pages/index', {
 				isAuthenticated: req.user,
 				playlists: playlists,
-				message: '',
+				message: 'someError',
 				//title: 'Please work'
 			});
 		})
@@ -73,6 +73,7 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	// reuse home page code... pass it a different array of playlists
 	// ====================================
 	// logout
 	// ====================================
@@ -87,7 +88,7 @@ module.exports = function(app, passport) {
 	app.get('/playlists/new', sendToHomeIfNotAuthenticated, function(req, res) {
 		res.render('pages/new', { 
 			message: req.flash('loginMessage'),
-			isAuthenticated: req.user
+			isAuthenticated: req.user,
  		});
 	});
 
@@ -120,8 +121,8 @@ function sendToHomeIfNotAuthenticated(req, res, next) {
 	}
 	//if user is not logged in, redirect them
 	
-	
-/*
+	/*
+
 	res.render('pages/index', {
 		message: req.flash('loginMessage'),
 		isAuthenticated: req.isAuthenticated()
@@ -130,14 +131,15 @@ function sendToHomeIfNotAuthenticated(req, res, next) {
 */
 	else {
 		res.redirect('/');
-		return req.flash({message: 'loginMessage'});
+		req.flash({'someError': 'Not logged in"'});
 
 };
+/*
+	message: req.flash({ message: 'loginMessage' });
 
-//	res.redirect('/');
-//	message: req.flash({message: 'loginMessage'});
+	res.redirect('/');
 
-	
+	*/
 
 
 };

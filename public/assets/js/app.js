@@ -118,6 +118,7 @@ $(document).ready(function() {
 		})
 			.done(function(data) {
 				//console.log(data);
+				window.location = ('/playlists/'+data._id);
 
 			});
 		event.preventDefault();
@@ -169,7 +170,6 @@ $(document).ready(function() {
 		event.preventDefault();
 		getFormInputs();
 		console.log('submit was clicked');
-		window.location = ('/');
 
 	});
 
