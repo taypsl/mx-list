@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include ../partials/head.ejs %>
+</head>
+<body>
+
+	<header>
+		<% include ../partials/header.ejs %>
+	</header>
+
+	<main>
+		<div class="container">
+
+			<form action="/api/playlists" method="POST" class="new-form" id="new-form">
+				<div class="playlist-form" id="playlist-form">
+
+
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label for="title" class="col-sm-2 col-form-label">MX-list Title</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" value="<%= playlist.title %>" id="title">
+							<input class="form-control" type="hidden" id="username" value="<%= isAuthenticated.local.username %>">
+						</div>
+					</div>
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label for="synopsis" class="col-sm-2 col-form-label">Synopsis</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" value="<%= playlist.synopsis %>" id="synopsis">
+						</div>
+					</div>
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label for="keywords" class="col-sm-2 col-form-label">Keywords</label>
+						<div class="col-sm-10">
+							<input class="form-control" type="text" value="<%= playlist.keywords %>" id="keywords">
+							<small id="keywordHelp" class="form-text text-muted">Keywords separated by spaces.</small>
+						</div>
+					</div>
+
+					<fieldset class="form-group row col-sm-8 col-sm-offset-2">
+						<label for="optionsRadios" class="col-sm-2 col-form-label">Playlist type</label>
+						<div class="col-sm-10">
+						    <div class="form-check">
+							    <label class="form-check-label">
+							    	<input type="radio" class="form-check-input" name="optionsRadios" id="type-artist" value="type-artist" checked> 
+							        <em> Artist-focused:</em> This is a list of cool/new/popular/obscure bands and musical artists.
+							    </label>
+						    </div>
+						    <div class="form-check">
+							    <label class="form-check-label">
+							        <input type="radio" class="form-check-input" name="optionsRadios" id="type-song" value="type-song"> 
+							        <em> Song-focused:</em> This is a list of the best/worst/weirdest/other songs.
+							    </label>
+						    </div>
+						</div>
+					</fieldset>
+
+				</div>
+				
+				<div class="row col-sm-12"><hr></div>
+				
+
+			<% for(var i=0; i<playlist.songs.length; i++) {%>
+            <% let count=i%>
+				<div class="new-song-form" id="${songId}">
+
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-10">
+							<input class="form-control artist" type="text" value="<%= playlist.songs[i].artist %>" name="artist">
+						</div>
+					</div>
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-10">
+							<input class="form-control song-imgURL" type="text" value="<%= playlist.songs[i].imgURL %>" name="song-imgURL">
+						</div>
+					</div>
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-10">
+							<input class="form-control name" type="text" value="<%= playlist.songs[i].name %>" name="name">
+						</div>
+					</div>
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-10">
+							<input class="form-control songURL" type="text" value="<%= playlist.songs[i].songId %>" name="songURL">
+							<small id="linkHelp" class="form-text text-muted"> For optimal experience, use a link from <a href="http://www.youtube.com">YouTube.</a></small>
+						</div>
+					</div>
+					<div class="form-group row col-sm-8 col-sm-offset-2">
+						<label class="col-sm-2 col-form-label"></label>
+						<div class="col-sm-10">
+							<textarea class="form-control description" type="text" rows="3" cols="50" value="<%= playlist.songs[i].description %>" name="description"></textarea>
+						</div>
+
+						<div class="rs-btn"><a class="remove-song-button" href="#"><span class="glyphicon glyphicon-minus black"></span> Remove</a></div>
+					</div>
+
+					<div class="row col-sm-12"><hr></div>
+
+				</div>
+
+
+			<% } %>
+				<div class="song-form"></div>
+
+				<div class="row col-sm-8 col-sm-offset-2"><a class="add-song-button" href="#"><span class="glyphicon glyphicon-plus"></span> Add</a></div>
+
+				<button class="btn btn-warning" type="submit" id="submitForm" name="submit">Submit</button>
+			
+			</form>
+
+		</div>
+	</main>
+
+	<footer>
+		<% include ../partials/footer.ejs %>
+	</footer>
+
+</body>
+</html>

@@ -163,20 +163,25 @@ $(document).ready(function() {
 		//}
 	}
 
-/*function editNavWhenAuthenticated(req) {
-	console.log('re');
-	var isAuth = $('#profile-nav');
-	if (!isAuth == 'undefined') {
-		console.log('me')
-		$('.navbar-nav').child('#login-nav').toggleClass('hidden');
-		$('.navbar-nav').child('#profile-nav').toggleClass('hidden');
-		$('.navbar-nav').child('#logout-nav').toggleClass('hidden');
+	function savePlaylist() {
+		var id = $('#playlist_id').text();
+/*		var check = confirm('Are you sure you want to delete this list?');
+
+		if (check == true) {*/
+			$.ajax({
+			type: 'PUT',
+			url: '/api/playlists/'+id,
+			dataType: 'json',
+			encode: true,
+			})
+			.done(function(data) {
+				window.location = ('/');
+			});
+		//}
 	}
-	else {
-	console.log('fa')}
-}*/
+
 // =================================
-// event listeners -> iframe video
+// event listeners
 // =================================
 
 $('.title-container').on('click', function(event) {
@@ -194,18 +199,7 @@ $('#pause_button').on('click', function () {
 });
 
 /*
-$('.play').on('click', function(event) {
-	player.playVideo();
-	event.preventDefault();
-});
-
-$('.pause').on('click', function(event) {
-	player.pauseVideo();
-	event.preventDefault();
-});*/
-
-/*
-// === add later when it's working ===>
+// === add later when video feature is working ===>
 $('.song-container').on('mouseover', function(event) {
 	player.playVideo();
 })
@@ -215,9 +209,7 @@ $('.song-container').on('mouseout', function(event) {
 })
 	*/
 
-// =================================
-// event listeners -> add to form
-// =================================
+
 $('.add-song-button').on('click', function(event) {
 	event.preventDefault();
 	addSongToForm();
@@ -239,11 +231,15 @@ $('.delete-playlist-button').on('click', function(event) {
 	deletePlaylist();
 });
 
-/*$('#login-btn').on('click', function(event) {
+$('.edit-playlist-button').on('click', function(event) {
+ 	event.preventDefault();
+	location.href='/playlists/'+ $('#playlist_id').text() + '/edit';
+});
+
+$('.save-playlist-button').on('click', function(event) {
 	event.preventDefault();
-	console.log('do');
-	$('#profile-nav').html(<%= isAuthenticated.local.username %>)
-})*/
+	savePlaylist();
+});
 
 
 

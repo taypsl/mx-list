@@ -123,6 +123,22 @@ module.exports = function(app, passport) {
 		})
 	});
 
+	app.get('/playlists/:id/edit', sendToHomeIfNotAuthenticated, function(req, res) {
+		Playlist
+		.findById(req.params.id)
+		.exec()
+		.then(playlist => {
+			res.render('pages/editPlaylist', {
+				playlist: playlist,
+				isAuthenticated: req.user,
+			})
+		})
+		.catch(err => {
+			console.error(err);
+			res.status(500).json({ error: 'something went wrong' });
+		})
+	});
+
 };
 
 
