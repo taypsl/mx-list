@@ -1,3 +1,10 @@
-language: node_js                        
-node_js: node                           
-services: mongodb                      
+language: node_js
+node_js: node
+services: mongodb
+deploy:
+  provider: heroku
+  api_key:
+    secure: TUKQlyDsbwVtE+hsNcyyra+Tltnc7XJ0SnzBRMV4LuoJlZUeKtePcwlH/q/96uicrQiGW+x4BRIXYbV8Xs7DLy+XMwhDhTArWjXMGCV4nSnQ32zw5zlJP4ISBhZgSTTk3ksTbPaRI7w0SKgip5Td6wUxEQJ7xrGOggVhG4zgHIJLpSMCl4O7WZ1vRjGwSjc0ys25W5Z0IZgfbc0sdKdMrexhFXmpOY51PQUc0wH0YVifoig6/hQ16tmcwMjm0qUx2eE8t63dPXRs42+GkWEG/v0HlkoN0YtUd4q5+2U6cLdKNk1yJTEPXgQe3JwAAzxarN7NjzYL0psQ+8Rj8IM2PoZV+4ffuxgB8njDmDl01ZyEqAWxIMu4jeky+6s2CTZRMSianGl1aK0GeAvgFE8H027MhlJRIN3YbDQbA+hFes3vgUl27ODpOaTaJ7YWKq0UqdhgQ+j0/h5yNrEzG7A6sj76HV5WKp9adTsMciHqs0aHXV6b46CiC/3JJ/j/DlluaAmkfAf3vGNcWg/9h/oBQKMMLI8WAxGG7BoZmyW8xmu8/jgFYqsZjD2YmxLgMuhwKWcMtmM+2P4Y1KOniprKbZ/xEXLo7+szuv6/UIDLQzWFNxGX8+3xH02UuzLaD/lwZrvyiAmf1gVREnzRNFrovdHFlsQRsUYGYZ3WvbrJL0M=
+  app: mxlist
+  on:
+    repo: taypsl/mx-list
