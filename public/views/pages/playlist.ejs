@@ -42,8 +42,8 @@
 
               <div id="video-container">
                 
-                <div id="video_<%=i%>1">
-                  <iframe id="video" src="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+                <div>
+                  <iframe id="video_<%=i%>1" src="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                 </div>
                 <div id="controls">
                   <div id="buttons">
@@ -58,14 +58,16 @@
 
               <hr class="playlist-spacer">
             <% } %>
-
-            <button class="delete-playlist-button">Delete list</button>
-
+            
           </article>
 
           <article class="playlist-footer">
             <p class="keywords" id="keywords"><%= playlist.keywords %></p>
           </article>
+          
+          <% if (playlistAuthor == currentUser) { %> 
+              <button class="delete-playlist-button">Delete list</button>
+          <% } %>
 
         </div>
       </section>

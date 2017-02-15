@@ -11,7 +11,7 @@ $(document).ready(function() {
 	
 	function onYouTubeIframeAPIReady() {
 
-		player = new YT.Player('video', {
+		player = new YT.Player('video_1', {
 			events: {
 				onReady: onPlayerReady
 			}

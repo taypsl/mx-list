@@ -66,20 +66,51 @@ module.exports = function(app, passport) {
   // ====================================
   // delete playlist
   // ====================================
+/*
     app.delete('/api/playlists/:id',  (req, res) => {
     // TODO VALIDATE USER IS LOGGED IN & IS OWNER OF PLAYLIST
     // Playlist.find()  playlist
     // if req.user.id === playlist.author
     //   delete.
-    
-    var authorName;
-    var requestName;
 
     Playlist
-    .find(req.params.user)
+    .findByIdAndRemove(req.params.id)
+    .exec()
+    .then(() => {
+      res.status(200).json({ message: 'successfully deleted' })
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: 'something went wrong' });
+    });
+  });
+  
+
+};*/
+
+    app.delete('/api/playlists/:id',  (req, res) => {
+
+
+    Playlist
+    .findById(req.params.id)
     .exec()
     .then(playlist => {
-        requestName = req.user.local.username
+        console.log(playlist)
+        if (playlist.username === req.user.local.username) {
+            Playlist
+            .findByIdAndRemove(req.params.id)
+            .exec()
+            .then(() => {
+              res.status(200).json({ message: 'successfully deleted' })
+            })
+            .catch(err => {
+              console.error(err);
+              res.status(500).json({ error: 'something went wrong' });
+            });
+        }
+        else {
+            res.status(500).json({ error: 'something went wrong' });
+        }
         //console.log(req.user.local.username);
         //console.log(playlist)
     })
@@ -109,7 +140,6 @@ module.exports = function(app, passport) {
   });
   */
 };
-
 
 //function to check if user is logged in
 function sendToHomeIfNotAuthenticated(req, res, next) {

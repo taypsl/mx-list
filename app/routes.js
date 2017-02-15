@@ -101,10 +101,20 @@ module.exports = function(app, passport) {
 		.findById(req.params.id)
 		.exec()
 		.then(playlist => {
+			function checkLocal() {
+				if(!(req.user)) {
+					return currentUser = 'not logged in';
+				}
+				else {
+					return currentUser = req.user.local.username
+				}
+			}
 			res.render('pages/playlist', {
-				playlist: playlist,
-				message: req.flash('someError'),
-				isAuthenticated: req.user
+			playlist: playlist,
+			message: req.flash('someError'),
+			isAuthenticated: req.user,
+			playlistAuthor: playlist.username,
+			currentUser: checkLocal()
 			});
 		})
 		.catch(err => {
