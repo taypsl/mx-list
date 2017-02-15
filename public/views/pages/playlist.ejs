@@ -8,13 +8,16 @@
     <% include ../partials/header.ejs %>
   </header>
 
-  <script src="http://www.youtube.com/player_api"></script>
 
   <main>
+
     <div class="hidden" id="playlist_id"><%= playlist._id %></div>
     <div class="container">
 
       <section class="col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+        <%  if(message.length>0) { %>
+            <div class="alert alert-danger"><%= message %></div>
+        <% } %>
         <div class="article-banner">
 
           <article class="playlist">
@@ -34,19 +37,25 @@
                 <img class="img-fluid song-imgURL" alt="Responsive image" src="<%= playlist.songs[i].imgURL %>" />
               </div>
 
-              <div class="player-container">
-                <a href="javascript:void(0);" id="play" class="player-icon"><img class="player-icon play" src="assets/images/icn_play.png" /></a>
-                <a href="javascript:void(0);"><img class="player-icon pause" src="assets/images/icn_pause.png" id="pause"></a>
-
-                <div id="player"><%= playlist.songs[i].songURL %></div>
-
+              <div id="video-container">
+                
+                <div id="video_<%=i%>1">
+                  <iframe id="video" src="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div id="controls">
+                  <div id="buttons">
+                    <a href="javascript:void(0);" id="play_button" class="player-icon"><img class="player-icon play" src="assets/images/icn_play.png" /></a>
+                    <a href="javascript:void(0);" id="pause_button"><img class="player-icon pause" src="assets/images/icn_pause.png"></a>
+                  </div>
+                </div>
+              
               </div>
 
               <p class="song-description"> <%= playlist.songs[i].description %></p>
 
               <hr class="playlist-spacer">
-            </article>
             <% } %>
+
             <button class="delete-playlist-button">Delete</button>
 
           </article>

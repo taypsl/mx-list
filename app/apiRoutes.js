@@ -76,6 +76,25 @@ module.exports = function(app, passport) {
     .findByIdAndRemove(req.params.id)
     .exec()
     .then(() => {
+        res.status(200).json({ message: 'successfully deleted' })
+    })
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: 'something went terribly awry' })
+    });
+  });
+
+  /* 
+    app.delete('/api/playlists/:id',  (req, res) => {
+    // TODO VALIDATE USER IS LOGGED IN & IS OWNER OF PLAYLIST
+    // Playlist.find()  playlist
+    // if req.user.id === playlist.author
+    //   delete.
+
+    Playlist
+    .findByIdAndRemove(req.params.id)
+    .exec()
+    .then(() => {
       res.status(200).json({ message: 'successfully deleted' })
     })
     .catch(err => {
@@ -83,6 +102,7 @@ module.exports = function(app, passport) {
       res.status(500).json({ error: 'something went wrong' });
     });
   });
+  */
 };
 
 

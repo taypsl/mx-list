@@ -1,25 +1,35 @@
 $(document).ready(function() {
-	"use-strict";
-
 	// =================================
 	// create and cue youtube iframe // not working outside of html file!!
 	// =================================
 	var tag = document.createElement('script');
 	tag.src = "https://www.youtube.com/iframe_api";
+  	var firstScriptTag = document.getElementsByTagName('script')[0];
+  	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-	var firstScriptTag = document.getElementsByTagName('script')[0];
-	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
+	var player;
+	
 	function onYouTubeIframeAPIReady() {
-		player = new YT.Player('player', {
+
+		player = new YT.Player('video', {
 			events: {
-				'onReady': onPlayerReady
+				onReady: onPlayerReady
 			}
 		});
 	};
 
-	function onPlayerReady(){
-		player.cueVideoByUrl('<%= playlist.songs[i].songURL %>');
+	function onPlayerReady(event) {
+		// bind events
+		var playButton = document.getElementById("play_button");
+		playButton.addEventListener("click", function() {
+		player.playVideo();
+		});
+
+		var pauseButton = document.getElementById("pause_button");
+		pauseButton.addEventListener("click", function() {
+		player.pauseVideo();
+		});
+
 	};
 
 	// =================================
@@ -72,86 +82,134 @@ $(document).ready(function() {
 			</div>
 			`);
 
-			songId++
-		};
+		songId++
+	};
 
-		addSongToForm();
+	addSongToForm();
 
-		function removeSong() {
-			$(this).parent('div').remove();
-		};
+	function removeSong() {
+		$(this).parent('div').remove();
+	};
 
-		function getFormInputs() {
+	function getVideoId(url) {
+	    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+	    var match = url.match(regExp);
 
-			var playlistData = {
-				title: $('#title').val(),
-				username: $('#username').attr('value'), // get username from form to store author with playlist
-				synopsis: $('#synopsis').val(),
-				keywords: $('#keywords').val().split(" "),
-				songs: [],
-				imgURL: $('#imgURL').val(),
-				type: $('.type').val() // look for the one that's checked... ?
+	    if (match && match[2].length == 11) {
+	        return match[2];
+	    } else {
+	        return 'error';
+	    }
+	}
+
+	function getFormInputs() {
+
+		var playlistData = {
+			title: $('#title').val(),
+			username: $('#username').attr('value'), // get username from form to store author with playlist
+			synopsis: $('#synopsis').val(),
+			keywords: $('#keywords').val().split(" "),
+			songs: [],
+			imgURL: $('#imgURL').val(),
+			type: $('.type').val() // look for the one that's checked... ?
+		}
+
+		songId=0;
+
+		var songsForms = $('.new-song-form');
+
+		for(var i=0; i<songsForms.length; i++) {
+			var item = songsForms[i];
+			var songUrlVal = $(item).find('.songURL').val()
+			var song = {
+				artist: $(item).find('.artist').val(),
+				name: $(item).find('.name').val(),
+				imgURL: $(item).find('.song-imgURL').val(),
+				songId: getVideoId(songUrlVal),
+				description: $(item).find('.description').val()
 			}
+			playlistData.songs.push(song)
+		}
 
-			songId=0;
+		$.ajax({
+			type: 'POST',
+			url: '/api/playlists',
+			data: playlistData,
+			dataType: 'json',
+			encode: true,
+		})
+		.done(function(data) {
+			console.log(data);
+			window.location = ('/playlists/'+data._id);
 
-			var songsForms = $('.new-song-form');
-
-			for(var i=0; i<songsForms.length; i++) {
-				var item = songsForms[i];
-				var song = {
-					artist: $(item).find('.artist').val(),
-					name: $(item).find('.name').val(),
-					imgURL: $(item).find('.song-imgURL').val(),
-					songURL: $(item).find('.songURL').val(),
-					description: $(item).find('.description').val()
-				}
-				playlistData.songs.push(song)
-			}
-
-			$.ajax({
-				type: 'POST',
-				url: '/api/playlists',
-				data: playlistData,
-				dataType: 'json',
-				encode: true,
-			})
-			.done(function(data) {
-				console.log(data);
-				window.location = ('/playlists/'+data._id);
-
-			});
-			event.preventDefault();
-		};
-
-		// =================================
-		// event listeners -> iframe video
-		// =================================
-
-		$('.title-container').on('click', function(event) {
-			location.href=`/playlists/${this.id}`;
-			event.preventDefault();
 		});
+		event.preventDefault();
+	};
 
-		$('.play').on('click', function(event) {
-			player.playVideo();
-			event.preventDefault();
+	function deletePlaylist() {
+		var id = $('#playlist_id').text();
+		$.ajax({
+			type: 'DELETE',
+			url: '/api/playlists/'+id,
+			dataType: 'json',
+			encode: true,
+		})
+		.done(function(data) {
+			window.location = ('/');
 		});
+	}
 
-		$('.pause').on('click', function(event) {
-			player.pauseVideo();
-			event.preventDefault();
-		});
+/*function editNavWhenAuthenticated(req) {
+	console.log('re');
+	var isAuth = $('#profile-nav');
+	if (!isAuth == 'undefined') {
+		console.log('me')
+		$('.navbar-nav').child('#login-nav').toggleClass('hidden');
+		$('.navbar-nav').child('#profile-nav').toggleClass('hidden');
+		$('.navbar-nav').child('#logout-nav').toggleClass('hidden');
+	}
+	else {
+	console.log('fa')}
+}*/
+// =================================
+// event listeners -> iframe video
+// =================================
 
-		/* === add later when it's working ===>
-		$('.song-container').on('mouseover', function(event) {
-		player.playVideo();
-	})
+$('.title-container').on('click', function(event) {
+	location.href=`/playlists/${this.id}`;
+	event.preventDefault();
+});
 
-	$('.song-container').on('mouseout', function(event) {
+
+$('#play_button').on('click', function () {
+    player.playVideo();
+});
+
+$('#pause_button').on('click', function () {
+    player.pauseVideo();
+});
+
+/*
+$('.play').on('click', function(event) {
+	player.playVideo();
+	event.preventDefault();
+});
+
+$('.pause').on('click', function(event) {
+	player.pauseVideo();
+	event.preventDefault();
+});*/
+
+/*
+// === add later when it's working ===>
+$('.song-container').on('mouseover', function(event) {
+	player.playVideo();
+})
+
+$('.song-container').on('mouseout', function(event) {
 	player.pauseVideo();
 })
-*/
+	*/
 
 // =================================
 // event listeners -> add to form
@@ -174,18 +232,14 @@ $('#submitForm').on('click', function(event) {
 
 $('.delete-playlist-button').on('click', function(event) {
 	event.preventDefault();
-	var id = $('#playlist_id').text();
-	$.ajax({
-		type: 'DELETE',
-		url: '/api/playlists/'+id,
-		dataType: 'json',
-		encode: true,
-	})
-	.done(function(data) {
-		window.location = ('/');
-	});
+	deletePlaylist();
 });
 
+/*$('#login-btn').on('click', function(event) {
+	event.preventDefault();
+	console.log('do');
+	$('#profile-nav').html(<%= isAuthenticated.local.username %>)
+})*/
 
 
 

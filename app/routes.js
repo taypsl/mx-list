@@ -33,7 +33,8 @@ module.exports = function(app, passport) {
 	// ====================================
 	app.get('/signup', function(req, res) {
 		res.render('pages/signup', {
-			message: req.flash('signupMessage')
+			message: req.flash('signupMessage'),
+			isAuthenticated: req.user
 		});
 	});
 
@@ -47,7 +48,10 @@ module.exports = function(app, passport) {
 	// login page
 	// ====================================
 	app.get('/login', function(req, res) {
-		res.render('pages/login',  { message: req.flash('loginMessage') })
+		res.render('pages/login',  { 
+			message: req.flash('loginMessage'),
+			isAuthenticated: req.user
+		})
 	});
 	//	process the login form
 
@@ -99,6 +103,7 @@ module.exports = function(app, passport) {
 		.then(playlist => {
 			res.render('pages/playlist', {
 				playlist: playlist,
+				message: req.flash('someError')
 			});
 		})
 		.catch(err => {
