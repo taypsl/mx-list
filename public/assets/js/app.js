@@ -148,15 +148,19 @@ $(document).ready(function() {
 
 	function deletePlaylist() {
 		var id = $('#playlist_id').text();
-		$.ajax({
+/*		var check = confirm('Are you sure you want to delete this list?');
+
+		if (check == true) {*/
+			$.ajax({
 			type: 'DELETE',
 			url: '/api/playlists/'+id,
 			dataType: 'json',
 			encode: true,
-		})
-		.done(function(data) {
-			window.location = ('/');
-		});
+			})
+			.done(function(data) {
+				window.location = ('/');
+			});
+		//}
 	}
 
 /*function editNavWhenAuthenticated(req) {

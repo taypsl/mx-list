@@ -103,7 +103,8 @@ module.exports = function(app, passport) {
 		.then(playlist => {
 			res.render('pages/playlist', {
 				playlist: playlist,
-				message: req.flash('someError')
+				message: req.flash('someError'),
+				isAuthenticated: req.user
 			});
 		})
 		.catch(err => {

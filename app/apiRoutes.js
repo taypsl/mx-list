@@ -66,21 +66,26 @@ module.exports = function(app, passport) {
   // ====================================
   // delete playlist
   // ====================================
-  app.delete('/api/playlists/:id',  (req, res) => {
+    app.delete('/api/playlists/:id',  (req, res) => {
     // TODO VALIDATE USER IS LOGGED IN & IS OWNER OF PLAYLIST
     // Playlist.find()  playlist
     // if req.user.id === playlist.author
     //   delete.
+    
+    var authorName;
+    var requestName;
 
     Playlist
-    .findByIdAndRemove(req.params.id)
+    .find(req.params.user)
     .exec()
-    .then(() => {
-        res.status(200).json({ message: 'successfully deleted' })
+    .then(playlist => {
+        requestName = req.user.local.username
+        //console.log(req.user.local.username);
+        //console.log(playlist)
     })
     .catch(err => {
-        console.error(err);
-        res.status(500).json({ error: 'something went terribly awry' })
+      console.error(err);
+      res.status(500).json({ error: 'something went wrong' });
     });
   });
 

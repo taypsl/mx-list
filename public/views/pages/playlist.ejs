@@ -23,6 +23,9 @@
           <article class="playlist">
             <!--<img class="playlist-img" id="imgURL" src="<%= playlist %>" />-->
             <h1 class="title"><%= playlist.title %></h1>
+              <div class="authoredBy-wrapper">
+              <p class="authoredBy">by</p><h4 class="username"><%= playlist.username%></h4>
+            </div>
             <p class="synopsis" id="synopsis"> <%= playlist.synopsis %></p>
             <hr class="playlist-spacer">
           </article>
@@ -56,7 +59,7 @@
               <hr class="playlist-spacer">
             <% } %>
 
-            <button class="delete-playlist-button">Delete</button>
+            <button class="delete-playlist-button">Delete list</button>
 
           </article>
 
