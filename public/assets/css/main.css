@@ -2,48 +2,48 @@
 =========== header and navbar ===========
 =========================================*/
 div.container-fluid {
-	height: 100px;
+	height: 80px;
 }
 
 nav.navbar-custom {
-	height: 100px;
+	height: 80px;
 	width: 100%;
-	background-color: #262626;
+	background-color: #000;
+	font-size: 1.2em;
 }
 
 .navbar-collapse-custom, div#bs-navbar-collapse.navbar-collapse.collapse  {
-	margin: 50px 20px 10px 0;
+	margin: 20px 20px 10px 0;
 }
 
 div#bs-navbar-collapse.navbar-collapse.collapse.in {
-	margin:0 20px 10px 0;
-	background-color: #f9f9f9;
+	margin: 15px 40px 10px 0;
+	background-color: #000;
+	border:none;
 }
 
-button.navbar-toggle.collapsed {
+button.navbar-toggle {
 	border: none;
+	margin-top: 25px;
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #777;
+    color: #fff;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #000;
+    color: #59FEFF;
     font-weight: 700;
 }
 
 /* brand */
-.logo {
-	margin-left: 10px;
-	float: left;
-}
-
-h1.title-text {
-	font-size: 1em;
+h1.title-text-brand {
+	font-size: 1.7em;
 	font-weight: 700;
-	color: #000000;
+	color: #fff;
+	width: 100%;
+	margin: 10px 0 0 40px;
 }
 
 /*=======================================
@@ -310,11 +310,19 @@ p.wrapper {
 }
 
 /*=======================================
+================ profile =================
+=========================================*/
+.profile-username {
+	margin: 40px 0 40px 60px;
+}
+
+/*=======================================
 ================ footer =================
 =========================================*/
 footer {
 	padding-top: 0;
-	margin: 25px;
+	margin-top: 250px;
+	margin-bottom: 25px;
 	font-size: 1em;
 }
 

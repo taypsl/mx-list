@@ -19,20 +19,20 @@
 					<div class="form-group row col-sm-8 col-sm-offset-2">
 						<label for="title" class="col-sm-2 col-form-label">MX-list Title</label>
 						<div class="col-sm-10">
-							<input class="form-control" type="text" value="<%= playlist.title %>" id="title">
+							<input class="form-control" type="text" value="<%= playlist.title %>" id="title" placeholder="title">
 							<input class="form-control" type="hidden" id="username" value="<%= isAuthenticated.local.username %>">
 						</div>
 					</div>
 					<div class="form-group row col-sm-8 col-sm-offset-2">
 						<label for="synopsis" class="col-sm-2 col-form-label">Synopsis</label>
 						<div class="col-sm-10">
-							<input class="form-control" type="text" value="<%= playlist.synopsis %>" id="synopsis">
+							<input class="form-control" type="text" value="<%= playlist.synopsis %>" id="synopsis" placeholder="synopsis">
 						</div>
 					</div>
 					<div class="form-group row col-sm-8 col-sm-offset-2">
 						<label for="keywords" class="col-sm-2 col-form-label">Keywords</label>
 						<div class="col-sm-10">
-							<input class="form-control" type="text" value="<%= playlist.keywords %>" id="keywords">
+							<input class="form-control" type="text" value="<%= playlist.keywords %>" id="keywords" placeholder="keywords">
 							<small id="keywordHelp" class="form-text text-muted">Keywords separated by spaces.</small>
 						</div>
 					</div>
@@ -67,32 +67,32 @@
 					<div class="form-group row col-sm-8 col-sm-offset-2">
 						<label class="col-sm-2 col-form-label"></label>
 						<div class="col-sm-10">
-							<input class="form-control artist" type="text" value="<%= playlist.songs[i].artist %>" name="artist">
+							<input class="form-control artist" type="text" value="<%= playlist.songs[i].artist %>" name="artist" placeholder="artist">
 						</div>
 					</div>
 					<div class="form-group row col-sm-8 col-sm-offset-2">
 						<label class="col-sm-2 col-form-label"></label>
 						<div class="col-sm-10">
-							<input class="form-control song-imgURL" type="text" value="<%= playlist.songs[i].imgURL %>" name="song-imgURL">
+							<input class="form-control song-imgURL" type="text" value="<%= playlist.songs[i].imgURL %>" name="song-imgURL" placeholder="link to image">
 						</div>
 					</div>
 					<div class="form-group row col-sm-8 col-sm-offset-2">
 						<label class="col-sm-2 col-form-label"></label>
 						<div class="col-sm-10">
-							<input class="form-control name" type="text" value="<%= playlist.songs[i].name %>" name="name">
+							<input class="form-control name" type="text" value="<%= playlist.songs[i].name %>" name="name" placeholder="most essential song">
 						</div>
 					</div>
 					<div class="form-group row col-sm-8 col-sm-offset-2">
 						<label class="col-sm-2 col-form-label"></label>
 						<div class="col-sm-10">
-							<input class="form-control songURL" type="text" value="<%= playlist.songs[i].songId %>" name="songURL">
+							<input class="form-control songURL" type="text" value="<%= playlist.songs[i].songId %>" name="songURL" placeholder="link to video">
 							<small id="linkHelp" class="form-text text-muted"> For optimal experience, use a link from <a href="http://www.youtube.com">YouTube.</a></small>
 						</div>
 					</div>
 					<div class="form-group row col-sm-8 col-sm-offset-2">
 						<label class="col-sm-2 col-form-label"></label>
 						<div class="col-sm-10">
-							<textarea class="form-control description" type="text" rows="3" cols="50" value="<%= playlist.songs[i].description %>" name="description"></textarea>
+							<textarea class="form-control description" type="text" rows="3" cols="50" value="<%= playlist.songs[i].description %>" name="description" placeholder="description"></textarea>
 						</div>
 
 						<div class="rs-btn"><a class="remove-song-button" href="#"><span class="glyphicon glyphicon-minus black"></span> Remove</a></div>
