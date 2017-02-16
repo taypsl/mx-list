@@ -1,36 +1,31 @@
+<nav class="navbar navbar-default navbar-static-top navbar-custom">
+	<div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed navbar-collapse-custom" data-toggle="collapse" data-target="#bs-navbar-collapse" aria-expanded="false" aria-controls="bs-navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+		<a class="navbar-brand" href="/">
+			<img class="logo" src="assets/images/icn_logo.png" alt="MX logo" />
+			<h1 class="title-text">MX-List</h1></a>
+    </div>
 
-<div class="container-fluid">
-		
-	<nav class="navbar navbar-default navbar-fixed-top navbar-custom">
-		<div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed navbar-collapse-custom" data-toggle="collapse" data-target="#bs-navbar-collapse" aria-expanded="false" aria-controls="bs-navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-			<a class="navbar-brand" href="/">
-				<img class="logo" src="assets/images/icn_logo.png" alt="MX logo" />
-				<h1 class="title-text">MX-List</h1></a>
-        </div>
+	<div class="navbar-collapse collapse navbar-right" id="bs-navbar-collapse">
+		<ul class="nav navbar-nav navbar-right">
+			<% if (!isAuthenticated) { %> 
+			<li class="nav-links-wrapper" id="login-nav"><a class="nav-links" href="/login">log in</a></li>
+			<% }%>
+			<li class="nav-links-wrapper"><a class="nav-links" id="create-nav" href="/playlists/new">create list</a></li>
+			<% if (isAuthenticated) { %> 
+			<li class="nav-links-wrapper" id="profile-nav"><a class="nav-links" href="/profile">profile</a></li>
+			<li class="nav-links-wrapper " id="logout-nav"><a class="nav-links" href="/logout" id="logout">logout</a></li><% }%>
+			
+		</ul>
+	</div>
 
-		<div class="navbar-collapse collapse navbar-right" id="bs-navbar-collapse">
-			<ul class="nav navbar-nav navbar-right">
-				<% if (!isAuthenticated) { %> 
-				<li class="nav-links-wrapper" id="login-nav"><a class="nav-links" href="/login">log in</a></li>
-				<% }%>
-				<li class="nav-links-wrapper"><a class="nav-links" id="create-nav" href="/playlists/new">create list</a></li>
-				<% if (isAuthenticated) { %> 
-				<li class="nav-links-wrapper" id="profile-nav"><a class="nav-links" href="/profile">profile</a></li>
-				<li class="nav-links-wrapper " id="logout-nav"><a class="nav-links" href="/logout" id="logout">logout</a></li><% }%>
-				
-			</ul>
-		</div>
+</nav>
 
-
-	</nav>
-
-</div>
 
 
 

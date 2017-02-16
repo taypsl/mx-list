@@ -7,7 +7,8 @@ div.container-fluid {
 
 nav.navbar-custom {
 	height: 100px;
-	background-color: #fff;
+	width: 100%;
+	background-color: #262626;
 }
 
 .navbar-collapse-custom, div#bs-navbar-collapse.navbar-collapse.collapse  {
@@ -80,6 +81,7 @@ div.container {
 
 div.new-playlist {
 	margin-left: 63px;
+	margin-top: 40px;
 }
 
 a.create {
@@ -311,20 +313,14 @@ p.wrapper {
 ================ footer =================
 =========================================*/
 footer {
-	margin-top: 200px;
-	margin-bottom: 25px;
-	font-size: .6em;
+	padding-top: 0;
+	margin: 25px;
+	font-size: 1em;
 }
 
-.footer-group {
-	position: absolute;
-	bottom: 50px;
-	margin: 0 auto 0 auto;
-	text-align: center;
-	width: 100%;
-}
-
-.footer-text {
+hr.new-line {
+	clear: left;
+	border: none;
 }
 
 /* no display */
