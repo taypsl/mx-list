@@ -9,42 +9,43 @@
 		<% include ../partials/header.ejs %>
 	</header>
 
-	<main>
-		<div class="container">
-
-			<div class="col-sm-8 col-sm-offset-2">
+	<body>
 				
-				<%  if(message.length>0) { %>
-						<div class="alert alert-danger"><%= message %></div>
-				<% } %>
+		<%  if(message.length>0) { %>
+				<div class="alert alert-danger"><%= message %></div>
+		<% } %>
 
-				<div class="new-playlist" id="new-playlist">
-					<h3><a class="create" href="/playlists/new"><span class="glyphicon glyphicon-plus"></span> Create Playlist</a></h3>
-				</div>
-			
+		<div class="new-playlist" id="new-playlist">
+			<h3><a class="create" href="/playlists/new"><span class="glyphicon glyphicon-plus"></span> Create Playlist</a></h3>
+		</div>
+
+		<div class="container-fluid"> 
+			<ul class="row group">
+				
 				<section>
 					<% for(var i=playlists.length-1; i>=0; i--) {%>
 						<% let count=i%>
-						<article class="article-container">
-							<div class="title-container" id="<%= playlists[i]._id %>">
-								<h1 class="article-title"><%= playlists[i].title %></h1>
-							</div>
-							<div class="container-fluid cf-custom">
-								<div class="row">
-									<div class="yellow-line col-md-8 col-sm-2"></div>
-									<div class="author col-md-4 col-sm-10"><%= playlists[i].username %></div>
-								</div>
-								<div class="synopsis"><%= playlists[i].synopsis %></div>
-							</div>
 
-						</article>
+							
+							<li class="col-md-4">
+								<div class="image-wrapper" id="<%= playlists[i]._id %>">
+									<img class="tape-img" src="assets/images/img_tape.png">
+									<div class="title-wrapper">
+										<h1 class="article-title"><%= playlists[i].title %></h1>
+									</div>
+									<div class="username-wrapper">
+										<p class="username-text"><%= playlists[i].username %></p>
+									</div>
+								</div>
+							</li>
+							
+
 					<% } %>
 				</section>
 
-			</div>
-
+			</ul>
 		</div>
-	<main>
+	<body>
 
 	<footer>
 		<% include ../partials/footer.ejs %>

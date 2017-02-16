@@ -1,4 +1,6 @@
-/* header && navbar */
+/*=======================================
+=========== header and navbar ===========
+=========================================*/
 div.container-fluid {
 	height: 100px;
 }
@@ -17,20 +19,8 @@ div#bs-navbar-collapse.navbar-collapse.collapse.in {
 	background-color: #f9f9f9;
 }
 
-
 button.navbar-toggle.collapsed {
 	border: none;
-}
-
-.logo {
-	margin-left: 10px;
-	float: left;
-}
-
-h1.title-text {
-	font-size: 1em;
-	font-weight: 600;
-	color: #000000;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -43,11 +33,23 @@ h1.title-text {
     font-weight: 700;
 }
 
+/* brand */
+.logo {
+	margin-left: 10px;
+	float: left;
+}
 
+h1.title-text {
+	font-size: 1em;
+	font-weight: 700;
+	color: #000000;
+}
 
-/* main page css */
+/*=======================================
+========= main page css =================
+=========================================*/
 body {
-	background-color: #f4f4f4;
+	background-color: #e6e6e6; /*f4f4f4*/
 }
 
 h1 {
@@ -76,6 +78,10 @@ div.container {
 	padding-top: 80px;
 }
 
+div.new-playlist {
+	margin-left: 63px;
+}
+
 a.create {
 	text-decoration: none;
 	color: black;
@@ -83,11 +89,67 @@ a.create {
 
 a.create:hover {
 	text-decoration: none;
-	color: #f4bc42;
+	color: #FF3449; /*f4bc42*/
 }
 
-/* article display on index.ejs */
-.article-container {
+/* display playlists on index.ejs */
+.group {
+	width: 100%;
+	display: block;
+}
+
+li {
+	list-style-type: none;
+}
+
+.image-wrapper {
+	position: relative;
+	display: block;
+	width:300px;
+	margin: 20px auto 20px auto;
+/*	float: left;
+*//*	box-sizing: border-box;
+*/
+}
+
+.tape-img {
+	position: relative;
+	display: block;
+}
+
+.title-wrapper {
+	position: absolute;
+	display: block;
+	left: 25px;
+	top: 26px;
+	width: 245px;
+	height: 50px;
+	text-align: center;
+
+}
+
+h1.article-title { 
+	font-size: 1.5em;
+	margin: 2px 0 0 0;
+	text-align: center;
+	line-height: 97%;
+
+}
+
+.username-wrapper {
+	position: absolute;
+	top: 113px;
+	right: 30px;
+	text-align: right;
+	width: 245px;
+	height: 40px;
+}
+
+p.username-text {
+	font-family: 'Space Mono', monospace;
+	font-size: 1.2em;
+}
+/*.article-container {
 	background-color: #fff;
 	margin-top: 40px;
 	border: 1px solid #f9f9f9;
@@ -132,9 +194,13 @@ div.author {
 
 .article-synopsis {
 	margin-left: 10px;
-}
+}*/
 
-/* new playlist form */
+
+/*=======================================
+========= new playlist form =============
+=========================================*/
+
 .form-img {
 	height: 46px;
 	text-align: center;
@@ -155,7 +221,9 @@ a.add-song-button, a.remove-song-button {
 }
 
 
-/* display playlist/:id */
+/*=======================================
+========= display playlist:id ===========
+=========================================*/
 h1.title {
 	background-color: #f4bc42;
 	padding-left: 10px;
@@ -197,7 +265,9 @@ p.song-description {
 	margin: 10px 0 0 0;
 }
 
-/* login and signup pages */ 
+/*=======================================
+========= login and sign up pages =======
+=========================================*/
 .login-title {
 	margin-bottom: 20px;
 }
@@ -233,13 +303,26 @@ p.wrapper {
 	font-size: 1.3em;
 }
 
-/* footer */
-
+/*=======================================
+================ footer =================
+=========================================*/
 footer {
 	margin-top: 200px;
 	margin-bottom: 25px;
 	font-size: .6em;
 }
+
+.footer-group {
+	position: absolute;
+	bottom: 50px;
+	margin: 0 auto 0 auto;
+	text-align: center;
+	width: 100%;
+}
+
+.footer-text {
+}
+
 /* no display */
 .hidden {
 	display: none;

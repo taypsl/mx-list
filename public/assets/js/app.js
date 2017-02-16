@@ -184,7 +184,7 @@ $(document).ready(function() {
 // event listeners
 // =================================
 
-$('.title-container').on('click', function(event) {
+$('.image-wrapper').on('click', function(event) {
 	location.href=`/playlists/${this.id}`;
 	event.preventDefault();
 });
@@ -241,6 +241,16 @@ $('.save-playlist-button').on('click', function(event) {
 	savePlaylist();
 });
 
+
+$('.image-wrapper').on('mouseover', function(event) {
+	event.preventDefault();
+	$(this).children('img').attr('src', '/assets/images/img_tape-sel.png');
+})
+
+$('.image-wrapper').on('mouseout', function(event) {
+	event.preventDefault();
+	$(this).children('img').attr('src', '/assets/images/img_tape.png');
+})
 
 
 });

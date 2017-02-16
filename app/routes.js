@@ -152,7 +152,7 @@ function sendToHomeIfNotAuthenticated(req, res, next) {
 		return next();
 	}
 	else {
-		req.flash('someError', "You are not logged in");
+		req.flash('someError', "Whoops! You need to log in first.");
 		res.redirect('/');
 	};
 };
