@@ -9,24 +9,39 @@
 		<% include ../partials/header.ejs %>
 	</header>
 
-	<main>
-		<div class="container">
+	<body>
+	
+		<%= isAuthenticated.local.username %>
 
-			<div class="col-sm-6 col-sm-offset-3">
-				<%= isAuthenticated.local.username %>
+		<div class="new-playlist" id="new-playlist">
+			<h3><a class="create" href="/playlists/new"><span class="glyphicon glyphicon-plus"></span> Create Playlist</a></h3>
+		</div>
 
-				<div class="new-playlist" id="new-playlist">
-					<h3><a class="create" href="/playlists/new"><span class="glyphicon glyphicon-plus"></span> Create Playlist</a></h3>
-				</div>
-			
+		<div class="container-fluid"> 
+			<ul class="row group">
+				
 				<section>
-					
+					<% for(var i=playlists.length-1; i>=0; i--) {%>
+						<% let count=i%>
+							
+							<li class="col-md-4">
+								<div class="image-wrapper" id="<%= playlists[i]._id %>">
+									<img class="tape-img" src="assets/images/img_tape.png">
+									<div class="title-wrapper">
+										<h1 class="article-title"><%= playlists[i].title %></h1>
+									</div>
+									<div class="username-wrapper">
+										<p class="username-text"><%= playlists[i].username %></p>
+									</div>
+								</div>
+							</li>
+
+					<% } %>
 				</section>
 
-			</div>
-
+			</ul>
 		</div>
-	<main>
+	<body>
 
 	<footer>
 		<% include ../partials/footer.ejs %>

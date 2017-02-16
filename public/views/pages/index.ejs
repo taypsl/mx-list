@@ -10,7 +10,7 @@
 	</header>
 
 	<body>
-				
+
 		<%  if(message.length>0) { %>
 				<div class="alert alert-danger"><%= message %></div>
 		<% } %>
@@ -25,7 +25,6 @@
 				<section>
 					<% for(var i=playlists.length-1; i>=0; i--) {%>
 						<% let count=i%>
-
 							
 							<li class="col-md-4">
 								<div class="image-wrapper" id="<%= playlists[i]._id %>">
@@ -38,7 +37,6 @@
 									</div>
 								</div>
 							</li>
-							
 
 					<% } %>
 				</section>

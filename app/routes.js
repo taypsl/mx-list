@@ -72,8 +72,14 @@ module.exports = function(app, passport) {
 	// user protected view
 	// ====================================
 	app.get('/profile', sendToHomeIfNotAuthenticated, function(req, res) {
-		res.render('pages/profile', {
-			isAuthenticated: req.user
+		Playlist
+		.find({username: req.user.local.username})
+		.exec()
+		.then(playlists => {
+			res.render('pages/profile', {
+				isAuthenticated: req.user,
+				playlists: playlists
+			});
 		});
 	});
 
