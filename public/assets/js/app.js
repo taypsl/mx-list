@@ -1,36 +1,74 @@
 $(document).ready(function() {
 	// =================================
-	// create and cue youtube iframe // not working outside of html file!!
+	// create and cue youtube iframe to 
+	// enable custom pause/play buttons
+	// (future feature)
 	// =================================
-	var tag = document.createElement('script');
-	tag.src = "https://www.youtube.com/iframe_api";
-  	var firstScriptTag = document.getElementsByTagName('script')[0];
-  	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	// var tag = document.createElement('script');
+	// 	tag.src = "https://www.youtube.com/iframe_api";
+	//   	var firstScriptTag = document.getElementsByTagName('script')[0];
+	//   	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-	var player;
-	
-	function onYouTubeIframeAPIReady() {
+	// 	var player;
+		
+	// 	function onYouTubeIframeAPIReady() {
 
-		player = new YT.Player('video_1', {
-			events: {
-				onReady: onPlayerReady
-			}
-		});
-	};
+	// 		player = new YT.Player('video_1', {
+	// 			events: {
+	// 				onReady: onPlayerReady
+	// 			}
+	// 		});
+	// 	};
 
-	function onPlayerReady(event) {
-		// bind events
-		var playButton = document.getElementById("play_button");
-		playButton.addEventListener("click", function() {
-		player.playVideo();
-		});
+	// 	function onPlayerReady(event) {
+	// 		// bind events
+	// 		var playButton = document.getElementById("play_button");
+	// 		playButton.addEventListener("click", function() {
+	// 		player.playVideo();
+	// 		});
 
-		var pauseButton = document.getElementById("pause_button");
-		pauseButton.addEventListener("click", function() {
-		player.pauseVideo();
-		});
+	// 		var pauseButton = document.getElementById("pause_button");
+	// 		pauseButton.addEventListener("click", function() {
+	// 		player.pauseVideo();
+	// 		});
 
-	};
+	// };
+
+	var $allVideos = $("iframe[src^='//www.youtube.com']"),
+
+	    // The element that is fluid width
+	    $fluidEl = $("section");
+
+	// Figure out and save aspect ratio for each video
+	$allVideos.each(function() {
+
+	  $(this)
+	    .data('aspectRatio', this.height / this.width)
+
+	    // and remove the hard coded width/height
+	    .removeAttr('height')
+	    .removeAttr('width');
+
+	});
+
+	// When the window is resized
+	$(window).resize(function() {
+
+	  var newWidth = $fluidEl.width();
+
+	  // Resize all videos according to their own aspect ratio
+	  $allVideos.each(function() {
+
+	    var $el = $(this);
+	    $el
+	      .width(newWidth)
+	      .height(newWidth * $el.data('aspectRatio'));
+
+	  });
+
+	// Kick off one resize to fix all videos on page load
+	}).resize();
+
 
 	// =================================
 	// add songs to new playlist form

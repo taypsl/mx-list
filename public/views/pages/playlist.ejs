@@ -32,30 +32,28 @@
 
           <% for(var i=0; i<playlist.songs.length; i++) {%>
             <% let count=i%>
-            <article class="song-container">
+            <article class="song-container" id="<%=playlist.songs[i].songId%>">
 
               <h2 class="song-name"><%= playlist.songs[i].name %></h2>
               <h3 class="artist-name"><i><%= playlist.songs[i].artist %></i></h3>
+              
               <div class="img-container">
                 <img class="img-fluid song-imgURL" alt="Responsive image" src="<%= playlist.songs[i].imgURL %>" />
               </div>
-
+              
               <div id="video-container">
-                
                 <div>
-                  <iframe id="video_<%=i%>1" src="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+                  <iframe id="video_<%=i%>1" width="560" height="349" src="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
                 </div>
-                <div id="controls">
+                <!-- custom buttons for future feature -->
+                <!-- <div id="controls">
                   <div id="buttons">
                     <a href="javascript:void(0);" id="play_button" class="player-icon"><img class="player-icon play" src="assets/images/icn_play.png" /></a>
                     <a href="javascript:void(0);" id="pause_button"><img class="player-icon pause" src="assets/images/icn_pause.png"></a>
                   </div>
-                </div>
-              
+                </div> -->
               </div>
-
               <p class="song-description"> <%= playlist.songs[i].description %></p>
-
               <hr class="playlist-spacer">
             <% } %>
             
@@ -66,9 +64,8 @@
           </article>
           
           <% if (playlistAuthor == currentUser) { %> 
-              <button class="delete-playlist-button">Delete</button>
-              <button class="edit-playlist-button">Edit</button>
-
+              <button class="edit-playlist-button btn btn-default">Edit</button>
+              <button class="delete-playlist-button btn btn-danger">Delete</button>
           <% } %>
 
         </div>
