@@ -4,70 +4,75 @@ $(document).ready(function() {
 	// enable custom pause/play buttons
 	// (future feature)
 	// =================================
-	// var tag = document.createElement('script');
-	// 	tag.src = "https://www.youtube.com/iframe_api";
-	//   	var firstScriptTag = document.getElementsByTagName('script')[0];
-	//   	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	var tag = document.createElement('script');
+		tag.src = "https://www.youtube.com/iframe_api";
+	  	var firstScriptTag = document.getElementsByTagName('script')[0];
+	  	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-	// 	var player;
-		
-	// 	function onYouTubeIframeAPIReady() {
+		var player;
 
-	// 		player = new YT.Player('video_1', {
-	// 			events: {
-	// 				onReady: onPlayerReady
-	// 			}
-	// 		});
-	// 	};
+	function onYouTubeIframeAPIReady() {
+	    player = new YT.Player('video', {
+	      videoId: $('.video-1').attr('href'),  
+	      events: {
+	            onReady: onPlayerReady, 
+	            onState: onStateChange
+	        }
+	    });
+	}
 
-	// 	function onPlayerReady(event) {
-	// 		// bind events
-	// 		var playButton = document.getElementById("play_button");
-	// 		playButton.addEventListener("click", function() {
-	// 		player.playVideo();
-	// 		});
-
-	// 		var pauseButton = document.getElementById("pause_button");
-	// 		pauseButton.addEventListener("click", function() {
-	// 		player.pauseVideo();
-	// 		});
-
-	// };
-
-	var $allVideos = $("iframe[src^='//www.youtube.com']"),
-
-	    // The element that is fluid width
-	    $fluidEl = $("section");
-
-	// Figure out and save aspect ratio for each video
-	$allVideos.each(function() {
-
-	  $(this)
-	    .data('aspectRatio', this.height / this.width)
-
-	    // and remove the hard coded width/height
-	    .removeAttr('height')
-	    .removeAttr('width');
-
-	});
-
-	// When the window is resized
-	$(window).resize(function() {
-
-	  var newWidth = $fluidEl.width();
-
-	  // Resize all videos according to their own aspect ratio
-	  $allVideos.each(function() {
-
-	    var $el = $(this);
-	    $el
-	      .width(newWidth)
-	      .height(newWidth * $el.data('aspectRatio'));
-
+	function onPlayerReady(event) {
+	  // bind events
+	  var playButton = document.getElementById('play');
+	  playButton.addEventListener('click', function() {
+	  player.playVideo();
 	  });
 
-	// Kick off one resize to fix all videos on page load
-	}).resize();
+	  var pauseButton = document.getElementById("pause");
+	  pauseButton.addEventListener('click', function() {
+	  player.pauseVideo();
+	  });
+
+	};
+
+	var url;
+	function onStateChange(url) {
+	  player.loadVideoByUrl(url);
+	}
+
+
+	$('.video').on('click', function(event) {
+	  event.preventDefault();
+	  var thisUrl = $(this).attr("href");
+	  onStateChange(thisUrl);
+	});
+
+	////////////////////////////////////////////////////////////////
+	/* responsive video with image placeholder */
+	// var youtube = document.querySelectorAll( ".youtube" );
+	
+	// for (var i = 0; i < youtube.length; i++) {
+		
+	// 	var source = ("https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg");
+		
+	// 	var image = new Image();
+	// 		image.src = source;
+	// 		image.addEventListener( "load", function() {
+	// 			youtube[ i ].appendChild( image );
+	// 		}( i ) );
+	
+	// 		youtube[i].addEventListener( "click", function() {
+
+	// 			var iframe = document.createElement( "iframe" );
+
+	// 					iframe.setAttribute( "frameborder", "0" );
+	// 					iframe.setAttribute( "allowfullscreen", "" );
+	// 					iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
+
+	// 					this.innerHTML = "";
+	// 					this.appendChild( iframe );
+	// 		} );	
+	// };
 
 
 	// =================================
@@ -140,7 +145,7 @@ $(document).ready(function() {
 	    }
 	}
 
-	function getFormInputs() {
+	function submitForm() {
 
 		var playlistData = {
 			title: $('#title').val(),
@@ -203,17 +208,17 @@ $(document).ready(function() {
 
 	function savePlaylist() {
 		var id = $('#playlist_id').text();
-/*		var check = confirm('Are you sure you want to delete this list?');
 
-		if (check == true) {*/
 			$.ajax({
 			type: 'PUT',
 			url: '/api/playlists/'+id,
 			dataType: 'json',
-			encode: true,
+			data: playlistData,
+			encode: true
 			})
 			.done(function(data) {
-				window.location = ('/');
+				// window.location = ('/');
+				console.log('saved!')
 			});
 		//}
 	}
@@ -245,7 +250,7 @@ $('.song-container').on('mouseover', function(event) {
 $('.song-container').on('mouseout', function(event) {
 	player.pauseVideo();
 })
-	*/
+*/
 
 
 $('.add-song-button').on('click', function(event) {
@@ -260,8 +265,7 @@ $('.song-form').on('click', '.remove-song-button', function(event) {
 
 $('#submitForm').on('click', function(event) {
 	event.preventDefault();
-	getFormInputs();
-	console.log('submit was clicked');
+	submitForm();
 });
 
 $('.delete-playlist-button').on('click', function(event) {
@@ -276,6 +280,7 @@ $('.edit-playlist-button').on('click', function(event) {
 
 $('.save-playlist-button').on('click', function(event) {
 	event.preventDefault();
+	console.log('trying to save');
 	savePlaylist();
 });
 

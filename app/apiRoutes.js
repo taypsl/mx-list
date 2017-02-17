@@ -2,7 +2,6 @@ const Playlist = require('./models/playlist');
 
 module.exports = function(app, passport) {
 
-
   app.get('/api/playlists', function(req, res) {
     Playlist
     .find()
@@ -19,8 +18,6 @@ module.exports = function(app, passport) {
 
   app.post('/api/playlists', function(req, res) {
 
-  //  const requiredFields = ['username', 'title', 'synopsis', 'songs', 'imgURL', 'type'];
-  console.log(req.body);
     Playlist
     .create({
       username: req.body.username,
@@ -66,30 +63,7 @@ module.exports = function(app, passport) {
   // ====================================
   // delete playlist
   // ====================================
-/*
     app.delete('/api/playlists/:id',  (req, res) => {
-    // TODO VALIDATE USER IS LOGGED IN & IS OWNER OF PLAYLIST
-    // Playlist.find()  playlist
-    // if req.user.id === playlist.author
-    //   delete.
-
-    Playlist
-    .findByIdAndRemove(req.params.id)
-    .exec()
-    .then(() => {
-      res.status(200).json({ message: 'successfully deleted' })
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: 'something went wrong' });
-    });
-  });
-  
-
-};*/
-
-    app.delete('/api/playlists/:id',  (req, res) => {
-
 
     Playlist
     .findById(req.params.id)
@@ -120,25 +94,6 @@ module.exports = function(app, passport) {
     });
   });
 
-  /* 
-    app.delete('/api/playlists/:id',  (req, res) => {
-    // TODO VALIDATE USER IS LOGGED IN & IS OWNER OF PLAYLIST
-    // Playlist.find()  playlist
-    // if req.user.id === playlist.author
-    //   delete.
-
-    Playlist
-    .findByIdAndRemove(req.params.id)
-    .exec()
-    .then(() => {
-      res.status(200).json({ message: 'successfully deleted' })
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: 'something went wrong' });
-    });
-  });
-  */
 };
 
 //function to check if user is logged in

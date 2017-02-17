@@ -16,7 +16,6 @@ module.exports = function(app, passport) {
 				isAuthenticated: req.user,
 				playlists: playlists,
 				message: req.flash('someError')
-				//title: 'Please work'
 			});
 		})
 		.catch(err => {
@@ -53,8 +52,8 @@ module.exports = function(app, passport) {
 			isAuthenticated: req.user
 		})
 	});
-	//	process the login form
 
+	//	process the login form
 	app.post('/login', passport.authenticate('local-login', {
 		successRedirect: '/profile', // redirect to the secure profile section
 		failureRedirect: '/login', // redirect back to the signup page if there is an error
@@ -66,7 +65,6 @@ module.exports = function(app, passport) {
 	function(req, res) {
 		res.json(req.user);
 	});
-
 
 	// ====================================
 	// user protected view
@@ -83,7 +81,6 @@ module.exports = function(app, passport) {
 		});
 	});
 
-	// reuse home page code... pass it a different array of playlists
 	// ====================================
 	// logout
 	// ====================================
