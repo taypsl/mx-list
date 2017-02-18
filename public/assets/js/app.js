@@ -4,16 +4,17 @@ $(document).ready(function() {
 	// enable custom pause/play buttons
 	// (future feature)
 	// =================================
+	
 	var tag = document.createElement('script');
 		tag.src = "https://www.youtube.com/iframe_api";
 	  	var firstScriptTag = document.getElementsByTagName('script')[0];
 	  	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-		var player;
+	var player;
 
 	function onYouTubeIframeAPIReady() {
 	    player = new YT.Player('video', {
-	      videoId: $('.video-1').attr('href'),  
+	      //videoId: $('.video').attr('href'),  
 	      events: {
 	            onReady: onPlayerReady, 
 	            onState: onStateChange
@@ -23,57 +24,26 @@ $(document).ready(function() {
 
 	function onPlayerReady(event) {
 	  // bind events
-	  var playButton = document.getElementById('play');
-	  playButton.addEventListener('click', function() {
-	  player.playVideo();
-	  });
-
 	  var pauseButton = document.getElementById("pause");
-	  pauseButton.addEventListener('click', function() {
+	  pauseButton.addEventListener("click", function() {
 	  player.pauseVideo();
 	  });
 
 	};
 
-	var url;
-	function onStateChange(url) {
+	function onStateChange(event, url) {
 	  player.loadVideoByUrl(url);
 	}
 
 
-	$('.video').on('click', function(event) {
+	$(".play-video").on("click", function(event) {
 	  event.preventDefault();
+	  console.log('click');
 	  var thisUrl = $(this).attr("href");
+	  	  console.log(thisUrl);
+	  console.log(player);
 	  onStateChange(thisUrl);
 	});
-
-	////////////////////////////////////////////////////////////////
-	/* responsive video with image placeholder */
-	// var youtube = document.querySelectorAll( ".youtube" );
-	
-	// for (var i = 0; i < youtube.length; i++) {
-		
-	// 	var source = ("https://img.youtube.com/vi/"+ youtube[i].dataset.embed +"/sddefault.jpg");
-		
-	// 	var image = new Image();
-	// 		image.src = source;
-	// 		image.addEventListener( "load", function() {
-	// 			youtube[ i ].appendChild( image );
-	// 		}( i ) );
-	
-	// 		youtube[i].addEventListener( "click", function() {
-
-	// 			var iframe = document.createElement( "iframe" );
-
-	// 					iframe.setAttribute( "frameborder", "0" );
-	// 					iframe.setAttribute( "allowfullscreen", "" );
-	// 					iframe.setAttribute( "src", "https://www.youtube.com/embed/"+ this.dataset.embed +"?rel=0&showinfo=0&autoplay=1" );
-
-	// 					this.innerHTML = "";
-	// 					this.appendChild( iframe );
-	// 		} );	
-	// };
-
 
 	// =================================
 	// add songs to new playlist form
