@@ -32,11 +32,29 @@
 	  player.loadVideoByUrl(url);
 	}
 
-
-	$(".play-video").on("click", function(event) {
+	$('.play-video').on('click', function(event) {
 	  event.preventDefault();
-	  var thisUrl = $(this).attr("href");
+	  var thisUrl = $(this).attr('href');
+	  console.log(thisUrl)
 	  onStateChange(thisUrl);
 	});
 
+	$('.song-container').on('mouseover', function(event) {
+	  event.preventDefault();
+	  console.log('mouseover')
+	  var thisURl = $(this).attr('id');
+	  console.log(thisUrl)
+	  // onStateChange(thisUrl);
+	});
+ 
+/*
+// === add later when video feature is working ===>
+$('.song-container').on('mouseover', function(event) {
+	player.playVideo();
+})
+
+$('.song-container').on('mouseout', function(event) {
+	player.pauseVideo();
+})
+*/
 // });

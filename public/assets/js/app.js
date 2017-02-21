@@ -158,27 +158,6 @@ $('.image-wrapper').on('click', function(event) {
 	event.preventDefault();
 });
 
-
-$('#play_button').on('click', function () {
-    player.playVideo();
-});
-
-$('#pause_button').on('click', function () {
-    player.pauseVideo();
-});
-
-/*
-// === add later when video feature is working ===>
-$('.song-container').on('mouseover', function(event) {
-	player.playVideo();
-})
-
-$('.song-container').on('mouseout', function(event) {
-	player.pauseVideo();
-})
-*/
-
-
 $('.add-song-button').on('click', function(event) {
 	event.preventDefault();
 	addSongToForm();
@@ -209,7 +188,6 @@ $('.save-playlist-button').on('click', function(event) {
 	console.log('trying to save');
 	savePlaylist();
 });
-
 
 $('.image-wrapper').on('mouseover', function(event) {
 	event.preventDefault();

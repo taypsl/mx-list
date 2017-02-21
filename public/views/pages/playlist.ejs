@@ -34,7 +34,7 @@
 
           <% for(var i=0; i<playlist.songs.length; i++) {%>
             <% let count=i%>
-            <article class="song-container" id="<%=playlist.songs[i].songId%>">
+            <article class="song-container" id="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1">
               <h2 class="song-name"><%= playlist.songs[i].artist %></h2>
               <h3 class="artist-name"><%= playlist.songs[i].name %></i></h3>
               <div class="img-container">
