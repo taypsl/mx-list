@@ -34,13 +34,14 @@ $(document).ready(function() {
 				<label class="col-sm-2 col-form-label"></label>
 				<div class="col-sm-10">
 					<input class="form-control songURL" type="text" placeholder="link to song" name="songURL">
-				<small id="linkHelp" class="form-text text-muted"> For optimal experience, use a link from <a href="http://www.youtube.com">YouTube.</a></small>
+					<small id="linkHelp" class="form-text text-muted"> For optimal experience, use a link from <a href="http://www.youtube.com">YouTube.</a></small>
 				</div>
 			</div>
 			<div class="form-group row col-sm-8 col-sm-offset-2">
 				<label class="col-sm-2 col-form-label"></label>
 				<div class="col-sm-10">
-					<input class="form-control wikiExcerpt" type="text" placeholder="link to wikipedia (optional)" name="wikiExcerpt">
+					<input class="form-control wikiExcerpt" type="text" placeholder="(optional) link to wikipedia page" name="wikiExcerpt">
+					<small id="linkHelp" class="form-text text-muted"> This link will generate an excerpt from the Wikipedia page.</a></small>
 				</div>
 			</div>
 			<div class="form-group row col-sm-8 col-sm-offset-2">

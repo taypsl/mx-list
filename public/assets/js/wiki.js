@@ -23,10 +23,9 @@ $(document).ready(function(){
 	        success: function (data, textStatus, jqXHR) {
 	            var pageId = Object.keys(data.query.pages);
 				var findByPageId = pageId[0];
-				console.log(findByPageId)
-				console.log(data.query.pages);
-				console.log(data.query.pages.findByPageId);
-				$('.wikiExcerpt').html(textcerpt);
+				var textract = data.query.pages[findByPageId].extract;
+				var finalExtract = textract.substring(0, 500);
+				$('.wikiExcerpt').html(finalExtract);
 	         },
 	        error: function (errorMessage) {
 	        }
