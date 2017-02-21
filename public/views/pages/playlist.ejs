@@ -29,9 +29,7 @@
             <hr class="playlist-spacer">
           </article>
 
-          <div id="video"> <!-- prev video-container class -->
-            <!-- <iframe id="video" src="//www.youtube.com/embed/wEBlaMOmKV4?enablejsapi=1" frameborder="0" allowfullscreen></iframe> -->
-          </div>
+          <div class="video-container">(I'm going to hide this when it's working correctly)<iframe id="video" src="//www.youtube.com/embed/wEBlaMOmKV4?enablejsapi=1" frameborder="0" allowfullscreen></iframe></div>
           <button id="pause">Pause</button>
 
           <% for(var i=0; i<playlist.songs.length; i++) {%>
@@ -55,7 +53,7 @@
           </article>
           
           <% if (playlistAuthor == currentUser) { %> 
-              <button class="edit-playlist-button btn btn-default">Edit</button>
+             <!--  <button class="edit-playlist-button btn btn-default">Edit</button> -->
               <button class="delete-playlist-button btn btn-danger">Delete</button>
           <% } %>
 

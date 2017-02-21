@@ -4,11 +4,10 @@ $(document).ready(function() {
 	// enable custom pause/play buttons
 	// (future feature)
 	// =================================
-	
 	var tag = document.createElement('script');
-		tag.src = "https://www.youtube.com/iframe_api";
-	  	var firstScriptTag = document.getElementsByTagName('script')[0];
-	  	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	tag.src = "https://www.youtube.com/iframe_api";
+  	var firstScriptTag = document.getElementsByTagName('script')[0];
+  	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 	var player;
 
@@ -28,20 +27,16 @@ $(document).ready(function() {
 	  pauseButton.addEventListener("click", function() {
 	  player.pauseVideo();
 	  });
-
 	};
 
-	function onStateChange(event, url) {
+	function onStateChange(url) {
 	  player.loadVideoByUrl(url);
 	}
-
 
 	$(".play-video").on("click", function(event) {
 	  event.preventDefault();
 	  console.log('click');
 	  var thisUrl = $(this).attr("href");
-	  	  console.log(thisUrl);
-	  console.log(player);
 	  onStateChange(thisUrl);
 	});
 
