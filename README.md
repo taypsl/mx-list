@@ -16,11 +16,9 @@ MX-List is a new blogging app for music enthusiasts who want to share more than 
 
 Wireframes for the early concepts for the landing page, creating a new list, viewing a list and logging in are shown below. The blue icons indicate user touch points to navigate through and modify the screens.
 
-```
-![Alt text](/public/assets/images/wireframes.png "Wireframes")
-```
+![Alt text](/public/assets/images/wireframes.png "Final Screens")
 
-#### Live Site
+### Live Site
 
 You can access MX-List at https://mxlist.herokuapp.com/.
 
