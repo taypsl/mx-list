@@ -13,6 +13,7 @@ const playlistSchema = mongoose.Schema({
     artist: String,
     songId: String,
     imgURL: String,
+    wikiExcerpt: String,
     description: String,
   }],
   imgURL: String,

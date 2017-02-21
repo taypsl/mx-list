@@ -234,6 +234,7 @@ h3.song-name {
 
 .player-controls {
 	background-color: #000;
+	margin-bottom: 10px;
 }
 
 button.play-video, button.pause {
@@ -249,6 +250,14 @@ p.song-description {
 
 .edit-playlist-button {
 	margin-right: 25px;
+}
+
+.wikiExcerpt {
+	display: inline;
+}
+
+.readMore {
+	display: inline;
 }
 
 /*=======================================
