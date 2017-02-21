@@ -123,6 +123,10 @@ li {
 	display: block;
 }
 
+.tape-img:hover {
+	cursor: pointer;
+}
+
 .title-wrapper {
 	position: absolute;
 	display: block;
