@@ -2,7 +2,7 @@
 
 Thinkful (https://www.thinkful.com/) Capstone 2 project: a music blogging app that let's you share annotated playlists with friends. 
 
-![Alt text](/public/assets/images/finalScreens.png "Desktop Wireframes")
+![Alt text](/public/assets/images/finalScreens.png "Final Screens")
 
 ### Introduction
 
@@ -17,7 +17,7 @@ MX-List is a new blogging app for music enthusiasts who want to share more than 
 Wireframes for the early concepts for the landing page, creating a new list, viewing a list and logging in are shown below. The blue icons indicate user touch points to navigate through and modify the screens.
 
 ```
-![Alt text](/public/assets/images/wireframes.png "Desktop Wireframes")
+![Alt text](/public/assets/images/wireframes.png "Wireframes")
 ```
 
 #### Live Site
