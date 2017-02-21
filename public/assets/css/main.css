@@ -47,7 +47,7 @@ h1.title-text-brand {
 }
 
 /*=======================================
-========= main page css =================
+========= main page style ===============
 =========================================*/
 body {
 	background-color: #e6e6e6; /*f4f4f4*/
@@ -160,55 +160,6 @@ p.username-text {
 	font-size: 1.2em;
 }
 
-/* old css main page */
-/*.article-container {
-	background-color: #fff;
-	margin-top: 40px;
-	border: 1px solid #f9f9f9;
-	padding: 0 0 0 30px;
-}
-
-.title-container {
- 	padding-right: 20px;
-	background-color: #000;
-	margin: 20px 0 10px 0;
-	border-radius: 8px 0 0 8px;
-}
-
-.title-container:hover {
-	cursor: pointer;
-}
-
-h1.article-title {
-	color: #fff;
-	margin: 10px 0 0 10px;
-	padding-bottom: 10px;
-	font-size: 2.5em;
-}
-
-.yellow-line {
-	color: #f4bc42;
-	border: 5px solid #f4bc42;
-	background-color: #f4bc42;
-	margin: 8px 0 0 0;
-}
-
-div.author {
-	font-family: 'Space Mono', monospace;
-	font-size: 1.2em;
-	font-weight: 700;
-
-}
-
-.cf-custom {
-	height: 40px;
-}
-
-.article-synopsis {
-	margin-left: 10px;
-}*/
-
-
 /*=======================================
 ========= new playlist form =============
 =========================================*/
@@ -260,9 +211,16 @@ p.synopsis {
 	margin: 20px 0 0 0;
 }
 
-.artist-name {
+h2.artist-name {
+	display: inline-block;
+}
+
+h3.song-name {
 	font-family: 'Space Mono', monospace;
 	font-weight: 400;
+	display: inline-block;
+	margin-left: 10px;
+	color: #fff;
 }
 
 .img-container {
@@ -274,25 +232,16 @@ p.synopsis {
 	min-width: 100%
 }
 
-
-/* audio player */
-.video-container {
-/*	display: none;
-*/}
-
-/*img.player-icon {
-	margin: 10px 0 10px 10px;
-	width: 40px;
-	float: right;
-}*/
+.player-controls {
+	background-color: #000;
+}
 
 button.play-video, button.pause {
 	border: none;
 	background: transparent;
-	margin-top: 10px;
-/*	-webkit-tap-highlight-color: rgba(0, 0, 0, 0)
-*/}
-
+	margin: 5px 0 10px 10px;
+	display: inline-block;
+}
 
 p.song-description {
 	margin: 10px 0 0 0;

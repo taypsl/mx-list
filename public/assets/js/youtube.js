@@ -5,11 +5,11 @@
 	// (future feature)
 	// =================================
 	var tag = document.createElement('script');
-		tag.src = "https://www.youtube.com/iframe_api";
-	  	var firstScriptTag = document.getElementsByTagName('script')[0];
-	  	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+	tag.src = "https://www.youtube.com/iframe_api";
+  	var firstScriptTag = document.getElementsByTagName('script')[0];
+  	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-		var player;
+	var player;
 
 	function onYouTubeIframeAPIReady() {
 	    player = new YT.Player('video', {
@@ -19,7 +19,7 @@
 	            onState: onStateChange
 	        }
 	    });
-	}
+	};
 
 	function onPlayerReady(event) {
 	    $(".pause").on("click", function(event) {
@@ -30,31 +30,20 @@
 
 	function onStateChange(url) {
 	  player.loadVideoByUrl(url);
-	}
+	};
 
 	$('.play-video').on('click', function(event) {
-	  event.preventDefault();
-	  var thisUrl = $(this).attr('href');
-	  console.log(thisUrl)
-	  onStateChange(thisUrl);
+	  	event.preventDefault();
+	  	var thisUrl = $(this).attr('href');
+	  	onStateChange(thisUrl);
+	  	$(this).siblings('.pause').toggleClass('hidden');
+	  	// $('.pause').toggleClass('hidden');
+	  	$(this).toggleClass('hidden');
 	});
 
-	$('.song-container').on('mouseover', function(event) {
-	  event.preventDefault();
-	  console.log('mouseover')
-	  var thisURl = $(this).attr('id');
-	  console.log(thisUrl)
-	  // onStateChange(thisUrl);
+	$('.pause').on('click', function(event) {
+		event.preventDefault();
+		$(this).siblings('.play-video').toggleClass('hidden');
+		// $('.play-video').toggleClass('hidden');
+	  	$(this).toggleClass('hidden');
 	});
- 
-/*
-// === add later when video feature is working ===>
-$('.song-container').on('mouseover', function(event) {
-	player.playVideo();
-})
-
-$('.song-container').on('mouseout', function(event) {
-	player.pauseVideo();
-})
-*/
-// });

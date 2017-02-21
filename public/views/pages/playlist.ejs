@@ -34,16 +34,19 @@
 
           <% for(var i=0; i<playlist.songs.length; i++) {%>
             <% let count=i%>
-            <article class="song-container" id="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1">
-              <h2 class="song-name"><%= playlist.songs[i].artist %></h2>
-              <h3 class="artist-name"><%= playlist.songs[i].name %></i></h3>
+            <article class="song-container" id="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1">                
+              <h2 class="artist-name col-6"><%= playlist.songs[i].artist %></h2>
               <div class="img-container">
                 <img class="img-fluid imgURL" src="<%= playlist.songs[i].imgURL%>" alt="Responsive image" />
               </div>
-              <button class="play-video player-icon" href="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1"><img src="assets/images/icn_play.png" /></button>
-              <button class="pause player-icon"><img src="assets/images/icn_pause.png"></button>
+              <div class="player-controls">
+                <button class="play-video player-icon" href="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1"><img src="assets/images/icn_play.png" /></button>
+                <button class="pause player-icon hidden"><img src="assets/images/icn_pause.png"></button>
+                <h3 class="song-name"><%= playlist.songs[i].name %></i></h3>
+              </div>
               <p class="song-description"><%= playlist.songs[i].description %></p>
               <hr class="playlist-spacer">
+
             <% } %>
             
           </article>
