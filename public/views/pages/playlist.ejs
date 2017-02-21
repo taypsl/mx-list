@@ -44,6 +44,7 @@
                 <button class="pause player-icon hidden"><img src="assets/images/icn_pause.png"></button>
                 <h3 class="song-name"><%= playlist.songs[i].name %></i></h3>
               </div>
+              <p class="wikiExcerpt" id="<%= playlist.songs[i].wikiExcerpt %>"></p>
               <p class="song-description"><%= playlist.songs[i].description %></p>
               <hr class="playlist-spacer">
 
@@ -68,6 +69,7 @@
   <footer class="footer">
     <% include ../partials/footer.ejs %>
     <script src="../assets/js/youtube.js"></script>
+    <script src="../assets/js/wiki.js"></script>
   </footer>
 
 
