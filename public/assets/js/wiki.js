@@ -1,4 +1,4 @@
-$(document).ready(function(){
+
 	// get excerpt from Wikipedia 
 	// find, parse, and return url to query Wikipedia API
 	function getWikiUrl() {
@@ -34,5 +34,5 @@ $(document).ready(function(){
     
 getWikiExcerpt();
 
-});
+
 
