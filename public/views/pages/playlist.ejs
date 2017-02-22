@@ -34,6 +34,7 @@
 
           <% for(var i=0; i<playlist.songs.length; i++) {%>
             <% let count=i%>
+            <div class="hidden playlistLength" id="<%=playlist.songs.length%>"></div>
             <article class="song-container" id="//www.youtube.com/embed/<%=playlist.songs[i].songId%>?enablejsapi=1">                
               <h2 class="artist-name col-6"><%= playlist.songs[i].artist %></h2>
               <div class="img-container">
@@ -44,7 +45,7 @@
                 <button class="pause player-icon hidden"><img src="assets/images/icn_pause.png"></button>
                 <h3 class="song-name"><%= playlist.songs[i].name %></i></h3>
               </div>
-              <p class="wikiExcerpt" id="<%= playlist.songs[i].wikiExcerpt %>"></p>
+              <p class="wikiExcerpt<%=[i]%>" id="<%= playlist.songs[i].wikiExcerpt %>"></p>
 
               <% if (playlist.songs[i].wikiExcerpt) { %>
               <p class="readMore"><a href="<%= playlist.songs[i].wikiExcerpt %>">...Read more</a></p>
