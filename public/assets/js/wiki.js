@@ -7,7 +7,7 @@
 		var titleUrl = splitUrl[1];
 		var percentUrl = titleUrl.replace("_", "%20");
 		console.log(percentUrl);
-		var newUrl = 'http://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=' + percentUrl + '&callback=?';
+		var newUrl = 'https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&titles=' + percentUrl + '&callback=?';
 		return newUrl;
 	}
 
