@@ -4,6 +4,10 @@ Thinkful (https://www.thinkful.com/) Capstone 2 project: a music blogging app th
 
 ![Alt text](/public/assets/images/finalScreens.png "Final Screens")
 
+### Live Site
+
+You can access MX-List at https://mxlist.herokuapp.com/.
+
 ### Introduction
 
 A throwback to the days of sharing of mix tapes, mx-list is a music blogging interface that enables users to easily create and share annotated playlists with friends and family. 
@@ -17,10 +21,6 @@ MX-List is a new blogging app for music enthusiasts who want to share more than 
 Wireframes for the early concepts for the landing page, creating a new list, viewing a list and logging in are shown below. The blue icons indicate user touch points to navigate through and modify the screens.
 
 ![Alt text](/public/assets/images/wireframes.png "Final Screens")
-
-### Live Site
-
-You can access MX-List at https://mxlist.herokuapp.com/.
 
 ### Technical
 
